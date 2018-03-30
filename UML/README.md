@@ -11,27 +11,27 @@ Topologi jaringan yang akan kalian gunakan adalah
 ![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/UML/images/Capture.PNG)
 
 1. Hapus terlebih dahulu file UML yang tidak diperlukan lagi bekas praktikum kemarin
-```bash
-rm ALPHET MENYENG TJANGKIR CENGENGESAN WAYAHE switch1 switch2
-```
+    ```bash
+    rm ALPHET MENYENG TJANGKIR CENGENGESAN WAYAHE switch1 switch2
+    ```
 2. Ubah file ```topologi.sh``` sesuai dengan gambar topologi di atas 
 
-```bash
-#switch
-uml_switch -unix switch1 > /dev/null < /dev/null &
-uml_switch -unix switch2 > /dev/null < /dev/null &
+    ```bash
+    #switch
+    uml_switch -unix switch1 > /dev/null < /dev/null &
+    uml_switch -unix switch2 > /dev/null < /dev/null &
 
-#router
-xterm -T GEBANG -e linux ubd0=GEBANG,jarkom umid=GEBANG eth0=tuntap,,,'ip_tuntap_tiap_kelompok' eth1=daemon,,,switch1 eth2=daemon,,,switch2 mem=256M &
+    #router
+    xterm -T GEBANG -e linux ubd0=GEBANG,jarkom umid=GEBANG eth0=tuntap,,,'ip_tuntap_tiap_kelompok' eth1=daemon,,,switch1 eth2=daemon,,,switch2 mem=256M &
 
-#proxy server
-xterm -T PUCANG -e linux ubd0=PUCANG,jarkom umid=PUCANG eth0=daemon,,,switch1 mem=128M &
+    #proxy server
+    xterm -T PUCANG -e linux ubd0=PUCANG,jarkom umid=PUCANG eth0=daemon,,,switch1 mem=128M &
 
-#client
-xterm -T NGAGEL -e linux ubd0=NGAGEL,jarkom umid=NGAGEL eth0=daemon,,,switch2 mem=96M &
-xterm -T NGINDEN -e linux ubd0=NGINDEN,jarkom umid=NGINDEN eth0=daemon,,,switch2 mem=96M &
-xterm -T DARMO -e linux ubd0=DARMO,jarkom umid=DARMO eth0=daemon,,,switch2 mem=96M &
-```
+    #client
+    xterm -T NGAGEL -e linux ubd0=NGAGEL,jarkom umid=NGAGEL eth0=daemon,,,switch2 mem=96M &
+    xterm -T NGINDEN -e linux ubd0=NGINDEN,jarkom umid=NGINDEN eth0=daemon,,,switch2 mem=96M &
+    xterm -T DARMO -e linux ubd0=DARMO,jarkom umid=DARMO eth0=daemon,,,switch2 mem=96M &
+    ```
 **Keterangan** : 
 * Jangan lupa mengubah **ip_tuntap_tiap_kelompok** sesuai kelompok masing-masing
 * Memori router **GEBANG** ditambah karena akan menjadi DHCP Server
