@@ -2,7 +2,7 @@
 
 **DHCP (Dynamic Host Configuration Protocol)** adalah sebuah protokol jaringan yang dapat memberikan atau meminjamkan alamat IP kepada komputer client yang terhubung ke jaringan secara otomatis dan dinamis dari range IP yang telah ditentukan. 
 
-[gambar]
+![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/dhcp.png)
 
 Jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP Server, sehingga tidak perlu memberikan alamat IP kepada semua komputer secara manual.
 
