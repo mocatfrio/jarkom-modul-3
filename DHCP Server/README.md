@@ -1,4 +1,4 @@
-# DHCP Server
+# 1. DHCP Server
 
 **DHCP (Dynamic Host Configuration Protocol)** adalah sebuah protokol jaringan yang dapat memberikan atau meminjamkan alamat IP kepada komputer client yang terhubung ke jaringan secara otomatis dan dinamis dari range IP yang telah ditentukan. 
 
