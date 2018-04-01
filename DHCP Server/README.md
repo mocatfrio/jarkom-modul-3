@@ -1,37 +1,37 @@
 # 1. Dynamic Host Configuration Protocol (DHCP)
-
 ## 1.1 Konsep Dasar
 ### 1.1.1 Pengertian
 
-**DHCP (Dynamic Host Configuration Protocol)** adalah sebuah protokol jaringan yang dapat memberikan atau meminjamkan alamat IP kepada komputer client yang terhubung ke jaringan secara otomatis dan dinamis dari range IP yang telah ditentukan. 
+**DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan nomor IP kepada komputer yang memintanya. 
+
+![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/cara-kerja.png)
+
+Sebuah jaringan lokal yang tidak menggunakan DHCP harus memberikan alamat IP kepada semua komputer secara manual. Namun jika DHCP dipasang di jaringan lokal, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server. Selain alamat IP, banyak parameter lain yang diberikan oleh DHCP, seperti default gateway dan DNS server.
+
+### 1.1.2 Jenis
+1. DHCP Client
 
 
-
-Jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP Server, sehingga tidak perlu memberikan alamat IP kepada semua komputer secara manual.
 
 ### 1.1.2 Cara Kerja
 
 ![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/dhcp.png)
 
-DHCP menggunakan 4 tahapan proses untuk memberikan alamat IP:
+Terdapat 4 tahapan yang dilakukan dalam proses peminjaman alamat IP pada DHCP:
 
-1. **IP Least Request**
-    
-    Client meminta alamat IP ke server (broadcast mencari DHCP server terdekat).
+1. **IP Least Request**: Client meminta alamat IP yang tersedia ke DHCP server (broadcast mencari DHCP server).
 
-2. **IP Least Offer**
+2. **IP Least Offer**: DHCP server menjawab dengan memberikan penawaran alamat IP ke client tersebut.
 
-    DHCP server memberikan penawaran alamat IP ke client tersebut.
+3. **IP Lease Selection**: Client memilih penawaran DHCP Server yang pertama diterima dan kembali melakukan broadcast menyetujui peminjaman alamat IP tersebut kepada DHCP Server.
 
-3. **IP Lease Selection**
+4. **IP Lease Acknowledge**: DHCP Server memberikan jawaban atas pesan tersebut berupa konfirmasi alamat IP dan informasi lain kepada client dengan sebuah ACKnowledgment. Setelah server meminjamkan (lease) alamat IP, server juga mencoret alamat IP tersebut dari daftar pool (alamat IP yang tersedia). Client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut.
 
-    Client memilih penawaran DHCP Server yang pertama diterima dan kembali melakukan broadcast menyetujui peminjaman tersebut kepada DHCP Server.
-
-4. **IP Lease Acknowledge**
-    
-    DHCP Server memberikan jawaban atas pesan tersebut berupa konfirmasi alamat IP dan informasi lain kepada client dengan sebuah ACKnowledgment. Kemudian client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut dan client dapat bekerja pada jaringan tersebut. 
+Sumber Dari: http://www.begal-tech.com/2015/06/pengertian-cara-kerja-dhcp-server-keuntungan-kerugian.html#ixzz5BO26nRYC
+ 
 
 ### 1.1.3 DHCP Message
+
 1. **DHCPDISCOVER**
 
     Ini merupakan tipe pertama dari DHCP, yang menentukan klien broadcast untuk menemukan server DHCP lokal. Opsi Message Type dikodekan ‘1’.
@@ -87,8 +87,6 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     ```
     INTERFACES="eth2"
     ```
-    [Gambar]
-
 3. Buka ```/etc/dhcp/dhcpd.conf``` untuk mengatur range IP yang akan digunakan dalam DHCP server
     ```
     nano /etc/dhcp/dhcpd.conf
@@ -234,3 +232,6 @@ Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DH
 3. Cek IP di semua client dengan ```ifconfig```
 
 Jika **NGAGEL** dan **NGINDEN** berganti alamat IP dan **DARMO** tetap mendapatkan IP 192.168.0.25, maka DHCP server kalian berhasil dengan baik. 
+
+## 1.3 Soal Latihan
+1. 
