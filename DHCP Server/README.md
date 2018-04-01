@@ -1,12 +1,71 @@
-# 1. DHCP Server
+# 1. Dynamic Host Configuration Protocol (DHCP)
+
+## 1.1 Konsep Dasar
+### 1.1.1 Pengertian
 
 **DHCP (Dynamic Host Configuration Protocol)** adalah sebuah protokol jaringan yang dapat memberikan atau meminjamkan alamat IP kepada komputer client yang terhubung ke jaringan secara otomatis dan dinamis dari range IP yang telah ditentukan. 
 
-![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/dhcp.png)
+
 
 Jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP Server, sehingga tidak perlu memberikan alamat IP kepada semua komputer secara manual.
 
-## 1.1 Instalasi ISC-DHCP-Server
+### 1.1.2 Cara Kerja
+
+![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/dhcp.png)
+
+DHCP menggunakan 4 tahapan proses untuk memberikan alamat IP:
+
+1. **IP Least Request**
+    
+    Client meminta alamat IP ke server (broadcast mencari DHCP server terdekat).
+
+2. **IP Least Offer**
+
+    DHCP server memberikan penawaran alamat IP ke client tersebut.
+
+3. **IP Lease Selection**
+
+    Client memilih penawaran DHCP Server yang pertama diterima dan kembali melakukan broadcast menyetujui peminjaman tersebut kepada DHCP Server.
+
+4. **IP Lease Acknowledge**
+    
+    DHCP Server memberikan jawaban atas pesan tersebut berupa konfirmasi alamat IP dan informasi lain kepada client dengan sebuah ACKnowledgment. Kemudian client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut dan client dapat bekerja pada jaringan tersebut. 
+
+### 1.1.3 DHCP Message
+1. **DHCPDISCOVER**
+
+    Ini merupakan tipe pertama dari DHCP, yang menentukan klien broadcast untuk menemukan server DHCP lokal. Opsi Message Type dikodekan ‘1’.
+
+2. **DHCPOFFER**
+
+    DHCP Server yang menerima satu klien DHCPDISCOVER dan yang dapat melayani permintaan operasi, mengirim DHCPOFFER pada klien dengan sekumpulan parameter. Opsi Messsage Type dikodekan ‘2’.
+
+3. **DHCPREQUEST**
+
+    Klien menerima satu atau lebih DHCPOFFER dan memutuskan tawaran yang diterima. Klien kemudian mengirim tawaran DHCPREQUEST ke “pemenang”. Semua server yang lain mengetahui pesan broadcast ini dan dapat memutuskan bahwa mereka “kalah". Opsi Message Type dikodekan ‘3’.
+
+4. **DHCPACK**
+
+    Akhirnya server mengirim DHCPACK ke klien dengan sekumpulan parameter konfigurasi, mengkonfirmasi pada klien bahwa DHCPREQUEST diterima, dan memberikan kumpulan informasi yang diperlukan. Bagian ACK dari nama pesan ini kependekan dari “acknowledge”. Opsi Message Type dikodekan ‘5’
+
+5. **DHCPNACK**
+
+    Jika klien meminta (dengan pesan DHCPREQUEST) alamat yang salah, kadaluwarsa, atau yang lainnya yang tidak dapat diterima, maka server mengirim DHCPNAK keklien untuk memberitahu bahwa ia tidak dapat memperoleh alamat tersebut. ‘NAK” dalam hal ini kependekan dari “negative acknowledge”. Opsi Message Type dikodekan ‘5’
+
+6. **DHCPDECLINE**
+
+    Jika klien menerima alamat yang diminta, dan secara berturutan menemukan bahwa alamat itu telah digunakan ditempat lain dalam jaringan, ia harus mengirim DHCPDECLINE ke server. Klien mungkin mencoba mengirim suara ke alamat. Jika ada jawaban berarti ada orang yang menggunakan alamat server. Opsi Message Type dikodekan ‘4’
+
+7. **DHCPRELEASE**
+
+    Jika klien tidak lagi perlu menggunakan alamat yang ditunjuk secara dinamis, ia harus mengirim pesan DHCPRELEASE ke server supaya server mengetahui bahwa alamat tidak lagi digunakan. Tidak semua klien DHCP melakukan hal ini karena merupakan pilihan teknis. Opsi Message Type dikodekan ‘7’
+
+8. **DHCPINFORM**
+
+    Jika klien telah mempunyai alamat IP, tetapi masih memerlukan beberapa informasi konfigurasi, maka pesan DHCPINFORM akan melayani tugas ini. Opsi Message Type dokodekan ‘8’.
+
+## 1.2 Konfigurasi
+### 1.2.1 Instalasi ISC-DHCP-Server
 Kita akan menjadikan router **GEBANG** sebagai DHCP Server. Oleh karena itu, install **isc-dhcp-server** di **GEBANG** dengan melakukan langkah-langkah di bawah ini:
 
 1. Update dulu **GEBANG**-nya dengan ```apt-get update```
@@ -14,7 +73,7 @@ Kita akan menjadikan router **GEBANG** sebagai DHCP Server. Oleh karena itu, ins
 
     **Keterangan** : Jangan panik dengan tulisan **[FAIL]**. Coba dibaca baik-baik, itu yang gagal bukanlah proses instalasinya, tetapi proses starting DHCP server-nya. Hal itu terjadi karena kita belum mengkonfigurasi interface-nya. Yuk capcus ke langkah selanjutnya!
 
-## 1.2 Konfigurasi DHCP Server
+### 1.2.2 Konfigurasi DHCP Server
 Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interface-nya terlebih dahulu. Lakukanlah,
 
 1. Buka ```/etc/default/isc-dhcp-server``` untuk mengkonfigurasi interface DHCP
@@ -70,7 +129,7 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     service isc-dhcp-server start
     ```
 
-## 1.3 Konfigurasi DHCP Client
+### 1.2.3 Konfigurasi DHCP Client
 Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapatkan IP dinamis dari DHCP server. Client yang akan kita berikan IP dinamis adalah **NGAGEL**, **NGINDEN**, dan **DARMO**. Lakukanlah,
 
 1. Sebelumnya, coba cek terlebih dahulu IP **NGAGEL** dengan ```ifconfig```
@@ -108,7 +167,7 @@ Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapat
 
 Lakukan kembali langkah-langkah di atas pada client **NGINDEN** dan **DARMO**.
 
-## 1.4 Fixed Address
+## 1.2.4 Fixed Address
 
 Ternyata PC **DARMO** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap connect WiFi. Oleh karena itu, **DARMO** membutuhkan IP tetap. Untungnya DHCP Server memiliki layanan untuk "menyewakan" alamat IP pada suatu host, yaitu menggunakan **Fixed Address**. Dalam kasus ini, **DARMO** akan mendapatkan IP tetap 192.168.0.25.
 
@@ -160,7 +219,7 @@ Lakukanlah,
 
     Yeay! IP **DARMO** telah berubah menjadi 192.168.0.25 sesuai dengan Fixed Address yang diberikan oleh DHCP Server.
 
-## 1.5 Final Testing
+## 1.2.5 Final Testing
 
 Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DHCP Server kalian berhasil dengan cara
 
