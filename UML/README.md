@@ -2,11 +2,15 @@
 
 ## PENTING UNTUK DIBACA
 1. Ikuti langkah-langkah membuat UML seperti di [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML) dengan topologi dan konfigurasi di bawah
-2.   
+2. Jangan lupa jalankan **iptables ...** di **GEBANG**, agar **NGINDEN** dan **NGAGEL** bisa terhubung ke internet
+3. Pastikan sudah **export proxy** dengan akun VPN (bisa didapatkan di https://id.its.ac.id/otp/) di semua UML
+4. Pastikan sudah **apt-get update** sebelum menginstall
+5. Install **isc-dhcp-server** di **GEBANG**
+6. Install **squid3** dan **apache2** di **PUCANG**
 
 ## Membuat Topologi Jaringan
 
-Topologi jaringan yang akan digunakan pada modul 3:
+Topologi jaringan yang akan digunakan pada modul 3 adalah
 
 ![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/UML/images/topologi.png)
 
@@ -41,7 +45,7 @@ Topologi jaringan yang akan digunakan pada modul 3:
 * Memori server **KLAMPIS** dan **PUCANG** ditambah karena akan menjadi Proxy dan DNS Server 
 
 ## Konfigurasi Interface
-Konfigurasi interface-nya sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
+Konfigurasi interface lengkap-nya sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
 
 1. **DARMO (Sebagai Client)**
 
