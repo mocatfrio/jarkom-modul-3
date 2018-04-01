@@ -1,7 +1,8 @@
 # UML
 
 ## PENTING UNTUK DIBACA!!!
-* Jika kalian mendapatkan error, jangan buru-buru panik. Pastikan kalian sudah melakukan semua langkah-langkah pada [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML). Silahkan dibaca dan diteliti kembali.
+* Segala hal yang dicantumkan disini hanyalah hal-hal yang sekiranya penting terkait dengan topologi baru yang akan digunakan untuk modul 3
+* Jika ada error, jangan buru-buru panik! Pastikan kalian sudah melakukan semua langkah-langkah pada [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML) dengan cermat dan teliti.
 
 ## Membuat Topologi Jaringan
 
@@ -20,7 +21,7 @@ Topologi jaringan yang akan kalian gunakan adalah
     uml_switch -unix switch1 > /dev/null < /dev/null &
     uml_switch -unix switch2 > /dev/null < /dev/null &
 
-    #Router
+    #Router dan DHCP Server
     xterm -T GEBANG -e linux ubd0=GEBANG,jarkom umid=GEBANG eth0=tuntap,,,'ip_tuntap_tiap_kelompok' eth1=daemon,,,switch1 eth2=daemon,,,switch2 mem=256M &
 
     #Proxy server
@@ -101,8 +102,10 @@ Topologi jaringan yang akan kalian gunakan adalah
     ```
 
 **Keterangan:**
-* Ip_eth0_GEBANG_tiap_kelompok = NID_tuntap_tiap_kelompok + 2
-* Ip_tuntap_tiap_kelompok = NID_tuntap_tiap_kelompok + 1
-* Ip_eth1_GEBANG_tiap_kelompok = NID_DMZ_tiap_kelompok + 1
-* Ip_KLAMPIS_tiap_kelompok = NID_DMZ_tiap_kelompok + 2
-* Ip_PUCANG_tiap_kelompok = NID_DMZ_tiap_kelompok + 3
+* **Ip_eth0_GEBANG_tiap_kelompok** = NID_tuntap_tiap_kelompok + 2
+* **Ip_tuntap_tiap_kelompok** = NID_tuntap_tiap_kelompok + 1
+* **Ip_eth1_GEBANG_tiap_kelompok** = NID_DMZ_tiap_kelompok + 1
+* **Ip_KLAMPIS_tiap_kelompok** = NID_DMZ_tiap_kelompok + 2
+* **Ip_PUCANG_tiap_kelompok** = NID_DMZ_tiap_kelompok + 3
+
+NID Tuntap dan NID DMZ masing-masing kelompok dapat dilihat di [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML)
