@@ -7,7 +7,7 @@
 
 Topologi jaringan yang akan kalian gunakan adalah
 
-![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/UML/images/topologi.PNG)
+![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/UML/images/topologi.png)
 
 1. Hapus terlebih dahulu file UML yang tidak diperlukan lagi bekas praktikum kemarin
     ```bash
