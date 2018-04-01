@@ -2,7 +2,7 @@
 
 ## PENTING UNTUK DIBACA
 1. Ikuti langkah-langkah membuat UML seperti di [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML) dengan topologi dan konfigurasi di bawah
-2. Jangan lupa jalankan **iptables ...** di router **GEBANG**, supaya topologi bisa mengakses jaringan keluar
+2. Jangan lupa jalankan **iptables -t nat...** di router **GEBANG** agar client dan server bisa terhubung ke internet
 3. Pastikan sudah **export proxy** dengan akun VPN (bisa didapatkan di https://id.its.ac.id/otp/) di semua UML
 4. Pastikan sudah **apt-get update** sebelum menginstall
 5. Install **isc-dhcp-server** di router **GEBANG**
