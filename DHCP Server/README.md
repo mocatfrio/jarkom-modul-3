@@ -143,7 +143,9 @@ Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapat
 
     ![8](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/8.png)
 
-    Yeay! IP **NGAGEL** telah berubah sesuai dengan range IP yang diberikan oleh DHCP Server. Berarti DHCP Server kalian berhasil.
+    ![15](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/15.png)
+
+    Yeay! IP **NGAGEL** telah berubah sesuai dengan range IP yang diberikan oleh DHCP Server, serta nameserver-nya otomatis ter-set mengarah ke 202.46.129.2. Berarti DHCP kalian berhasil.
 
     **Keterangan** : 
     * Jika IP **NGAGEL** masih belum berubah, jangan panik. Lakukanlah kembali ```service networking restart```
