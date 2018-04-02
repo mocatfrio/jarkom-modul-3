@@ -200,10 +200,12 @@ Lakukanlah,
 Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DHCP Server kalian berhasil dengan cara
 
 1. Matikan UML kalian
+
     ```bash
     bash bye.sh
     ```
 2. Jalankan UML kembali 
+
     ```bash
     bash topologi.sh
     ```
