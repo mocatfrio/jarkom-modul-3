@@ -173,7 +173,7 @@ Lakukanlah,
     
     * **hardware ethernet** didapatkan dari **hardware address** dari **DARMO**, dengan cara ```ifconfig```
 
-    ![14](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/14.png)
+        ![14](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/14.png)
 
     * **fixed-address** adalah alamat IP yang "disewa" oleh **DARMO**
     
@@ -190,6 +190,7 @@ Lakukanlah,
     ```bash
     hwaddress ether 'hwaddress_darmo'
     ```
+    
     ![10](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/10.png)
 
     **Keterangan:** Hardware address perlu di-setting juga di **/etc/network/interfaces** karena perangkat yang kalian gunakan adalah perangkat virtual (UML) dimana hwaddress-nya akan berubah setiap kali di-restart
