@@ -263,4 +263,18 @@ Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user prox
 
 ![Pucang23](images/23.png) ![Pucang24](images/24.png)
 
+Keterangan:
+- **delay_pools** digunakan untuk menentukan berapa pool yang akan dibuat. (Sintaks: **delay_pools JUMLAH_YANG_DIINGINKAN**. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_pools/).
+- **delay_class** digunakan untuk menentukan kelas dari pool yang telah dibuat. (Sintaks: **delay_class POOL_KE_BERAPA KELAS**.) Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_class/.
+- **delay_access** mirip seperti http_access, tetapi digunakan untuk mengakses pool yang telah dibuat (Sintaks: **delay_access POOL_KE_BERAPA allow/deny TARGET**. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_access/).
+- **delay_parameters** digunakan untuk mengatur parameter dari pool yang telah dibuat. Sintaks berbeda-beda sesuai dengan kelas dari pool yang dibuat. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_parameters/
+- Penjelasan dari fitur **delay_pools** lebih lengkap bisa dilihat di https://wiki.squid-cache.org/Features/DelayPools
+
 ## 2.3 Soal Latihan
+Mocatfrio adalah seorang mahasiswi Informatika ITS. Dia ingin membuat sebuah proxy sendiri. Proxy yang akan dibuat nantinya harus bisa diakses dengan nama **proxy.xxx.id** dan port yang digunakan **8080**. Dia ingin ada login terlebih dahulu saat menggunakan proxy. Untuk akun yang akan digunakan untuk dirinya sendiri, dia ingin menggunakan username **mocatfrio** dan password **n0-madeN**. Proxy ini nantinya hanya bisa digunakan saat mocatfrio sedang ada kelas. Jadwal kelas mocatfrio adalah Senin, Rabu, dan Kamis mulai jam 7 pagi sampai jam 4 sore. Kemudian, dia ingin membatasi agar hanya user dari **Informatics_wifi** saja yang bisa menggunakan proxy tersebut. Lalu, dia teringat kalau dulu dia pernah ditolak masuk Unair. Oleh karena itu dia memutuskan untuk memblokir website Unair (unair.ac.id) beserta seluruh subdomain yang ada. Supaya adil, dia ingin agar seluruh user mendapatkan bandwidth yang sama. Yaitu 512 kbps pada saat normal dan 1 Mbps pada saat kosong.
+
+Karena mocatfrio ternyata sangat sibuk, maka dia meminta bantuan kalian untuk membuatkan proxy seperti yang dia minta. Cobalah untuk memenuhi permintaan mocatfrio supaya mocatfrio merasa senang.
+
+Keterangan:
+- **xxx** adalah kelompok kalian masing-masing. Misal: **c01**
+- **Informatics_wifi** : 10.151.252.0/22
