@@ -172,6 +172,9 @@ Lakukanlah,
     **Penjelasan:**
     
     * **hardware ethernet** didapatkan dari **hardware address** dari **DARMO**, dengan cara ```ifconfig```
+
+    ![14](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/14.png)
+
     * **fixed-address** adalah alamat IP yang "disewa" oleh **DARMO**
     
 2. Jangan lupa restart!
