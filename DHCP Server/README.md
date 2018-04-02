@@ -27,49 +27,14 @@ Terdapat 4 tahapan yang dilakukan dalam proses peminjaman alamat IP pada DHCP:
 
 4. **IP Lease Acknowledge**: DHCP Server memberikan jawaban atas pesan tersebut berupa konfirmasi alamat IP dan informasi lain kepada client dengan sebuah ACKnowledgment. Setelah server meminjamkan (lease) alamat IP, server juga mencoret alamat IP tersebut dari daftar pool (alamat IP yang tersedia). Client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut.
 
-Sumber Dari: http://www.begal-tech.com/2015/06/pengertian-cara-kerja-dhcp-server-keuntungan-kerugian.html#ixzz5BO26nRYC
- 
-
-### 1.1.3 DHCP Message
-
-1. **DHCPDISCOVER**
-
-    Ini merupakan tipe pertama dari DHCP, yang menentukan klien broadcast untuk menemukan server DHCP lokal. Opsi Message Type dikodekan ‘1’.
-
-2. **DHCPOFFER**
-
-    DHCP Server yang menerima satu klien DHCPDISCOVER dan yang dapat melayani permintaan operasi, mengirim DHCPOFFER pada klien dengan sekumpulan parameter. Opsi Messsage Type dikodekan ‘2’.
-
-3. **DHCPREQUEST**
-
-    Klien menerima satu atau lebih DHCPOFFER dan memutuskan tawaran yang diterima. Klien kemudian mengirim tawaran DHCPREQUEST ke “pemenang”. Semua server yang lain mengetahui pesan broadcast ini dan dapat memutuskan bahwa mereka “kalah". Opsi Message Type dikodekan ‘3’.
-
-4. **DHCPACK**
-
-    Akhirnya server mengirim DHCPACK ke klien dengan sekumpulan parameter konfigurasi, mengkonfirmasi pada klien bahwa DHCPREQUEST diterima, dan memberikan kumpulan informasi yang diperlukan. Bagian ACK dari nama pesan ini kependekan dari “acknowledge”. Opsi Message Type dikodekan ‘5’
-
-5. **DHCPNACK**
-
-    Jika klien meminta (dengan pesan DHCPREQUEST) alamat yang salah, kadaluwarsa, atau yang lainnya yang tidak dapat diterima, maka server mengirim DHCPNAK keklien untuk memberitahu bahwa ia tidak dapat memperoleh alamat tersebut. ‘NAK” dalam hal ini kependekan dari “negative acknowledge”. Opsi Message Type dikodekan ‘5’
-
-6. **DHCPDECLINE**
-
-    Jika klien menerima alamat yang diminta, dan secara berturutan menemukan bahwa alamat itu telah digunakan ditempat lain dalam jaringan, ia harus mengirim DHCPDECLINE ke server. Klien mungkin mencoba mengirim suara ke alamat. Jika ada jawaban berarti ada orang yang menggunakan alamat server. Opsi Message Type dikodekan ‘4’
-
-7. **DHCPRELEASE**
-
-    Jika klien tidak lagi perlu menggunakan alamat yang ditunjuk secara dinamis, ia harus mengirim pesan DHCPRELEASE ke server supaya server mengetahui bahwa alamat tidak lagi digunakan. Tidak semua klien DHCP melakukan hal ini karena merupakan pilihan teknis. Opsi Message Type dikodekan ‘7’
-
-8. **DHCPINFORM**
-
-    Jika klien telah mempunyai alamat IP, tetapi masih memerlukan beberapa informasi konfigurasi, maka pesan DHCPINFORM akan melayani tugas ini. Opsi Message Type dokodekan ‘8’.
-
 ## 1.2 Konfigurasi
 ### 1.2.1 Instalasi ISC-DHCP-Server
 Kita akan menjadikan router **GEBANG** sebagai DHCP Server. Oleh karena itu, install **isc-dhcp-server** di **GEBANG** dengan melakukan langkah-langkah di bawah ini:
 
 1. Update dulu **GEBANG**-nya dengan ```apt-get update```
 2. Setelah mengupdate, install **isc-dhcp-server** dengan ```apt-get install isc-dhcp-server```
+
+    ![1](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/1.png)
 
     **Keterangan** : Jangan panik dengan tulisan **[FAIL]**. Coba dibaca baik-baik, itu yang gagal bukanlah proses instalasinya, tetapi proses starting DHCP server-nya. Hal itu terjadi karena kita belum mengkonfigurasi interface-nya. Yuk capcus ke langkah selanjutnya!
 
@@ -87,6 +52,8 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     ```
     INTERFACES="eth2"
     ```
+    ![2](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/2.png)
+
 3. Buka ```/etc/dhcp/dhcpd.conf``` untuk mengatur range IP yang akan digunakan dalam DHCP server
     ```
     nano /etc/dhcp/dhcpd.conf
@@ -117,6 +84,9 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
         max-lease-time 7200;
     }
     ```
+    ![3](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/3.png)
+
+
 5. Jangan lupa restart!
     ```bash
     service isc-dhcp-server restart
@@ -126,13 +96,14 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     service isc-dhcp-server stop
     service isc-dhcp-server start
     ```
+    ![4](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/4.png)
 
 ### 1.2.3 Konfigurasi DHCP Client
 Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapatkan IP dinamis dari DHCP server. Client yang akan kita berikan IP dinamis adalah **NGAGEL**, **NGINDEN**, dan **DARMO**. Lakukanlah,
 
 1. Sebelumnya, coba cek terlebih dahulu IP **NGAGEL** dengan ```ifconfig```
     
-    *[Gambar]*
+    ![5](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/5.png)
 
     Dari konfigurasi sebelumnya, IP **NGAGEL** telah di set 192.168.0.2
 
@@ -145,19 +116,23 @@ Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapat
     auto eth0
     iface eth0 inet dhcp
     ```
+    ![6](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/6.png)
+
     **Keterangan**: **eth0** adalah interface yang digunakan client.
 
 4. Jangan lupa restart!
     ```bash
     service networking restart
     ```
+    ![7](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/7.png)
+
 5. Testing
 
     Coba cek kembali IP **NGAGEL** dengan melakukan ```ifconfig```
 
-    [Gambar]
+    ![8](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/8.png)
 
-    Yeay! IP **NGAGEL** telah berubah menjadi 192.168.0.10 sesuai dengan range IP yang diberikan oleh DHCP Server. Berarti DHCP Server kalian berhasil.
+    Yeay! IP **NGAGEL** telah berubah sesuai dengan range IP yang diberikan oleh DHCP Server. Berarti DHCP Server kalian berhasil.
 
     **Keterangan** : 
     * Jika IP **NGAGEL** masih belum berubah, jangan panik. Lakukanlah kembali ```service networking restart```
@@ -182,11 +157,11 @@ Lakukanlah,
         fixed-address 192.168.0.25;
     }
     ```
+    ![9](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/9.png)
+
     **Penjelasan:**
     
     * **hardware ethernet** didapatkan dari **hardware address** dari **DARMO**, dengan cara ```ifconfig```
-
-        [gambar]
     * **fixed-address** adalah alamat IP yang "disewa" oleh **DARMO**
     
 2. Jangan lupa restart!
@@ -202,20 +177,23 @@ Lakukanlah,
     ```bash
     hwaddress ether 'hwaddress_darmo'
     ```
+    ![10](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/10.png)
+
     **Keterangan:** Hardware address perlu di-setting juga di **/etc/network/interfaces** karena perangkat yang kalian gunakan adalah perangkat virtual (UML) dimana hwaddress-nya akan berubah setiap kali di-restart
 
 4. Jangan lupa restart!
     ```bash
     service networking restart
     ```
+    ![11](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/11.png)
 
 5. Testing
 
     Coba cek IP **DARMO** dengan melakukan ```ifconfig```
 
-    [Gambar]
+    ![12](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/12.png)
 
-    Yeay! IP **DARMO** telah berubah menjadi 192.168.0.25 sesuai dengan Fixed Address yang diberikan oleh DHCP Server.
+    Yeay! IP **DARMO** telah berubah menjadi 192.168.0.15 sesuai dengan Fixed Address yang diberikan oleh DHCP Server.
 
 ## 1.2.5 Final Testing
 
@@ -231,7 +209,7 @@ Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DH
     ```
 3. Cek IP di semua client dengan ```ifconfig```
 
-Jika **NGAGEL** dan **NGINDEN** berganti alamat IP dan **DARMO** tetap mendapatkan IP 192.168.0.25, maka DHCP server kalian berhasil dengan baik. 
+Jika **NGAGEL** dan **NGINDEN** berganti alamat IP dan **DARMO** tetap mendapatkan IP 192.168.0.15, maka DHCP server kalian berhasil dengan baik. 
 
 ## 1.3 Soal Latihan
 1. 
