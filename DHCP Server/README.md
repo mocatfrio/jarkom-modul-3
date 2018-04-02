@@ -70,10 +70,19 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
         max-lease-time 'Waktu';
     }
     ```
-    Selain alamat IP, banyak parameter jaringan yang dapat didistribusikan oleh DHCP, seperti informasi netmask, default gateway dan DNS server. Berikut ini beberapa **parameter jaringan** yang sering digunakan :
+    Selain alamat IP, banyak parameter jaringan yang dapat didistribusikan oleh DHCP, seperti informasi netmask, default gateway dan DNS server. Berikut ini beberapa **parameter jaringan dasar** yang biasanya digunakan adalah:
 
-    [INI PENJELASAN]
+    1. **subnet 'NID'**: Network ID pada subnet
+    2. **netmask 'Netmask'**: Netmask pada subnet
+    3. **range 'IP_Awal' 'IP_Akhir'**: Rentang alamat IP yang akan didistribusikan dan digunakan secara dinamis
+    4. **option routers 'Gateway'**: IP gateway dari router menuju client sesuai konfigurasi subnet
+    5. **option broadcast-address 'IP_Broadcast'**: IP broadcast pada subnet
+    6. **option domain-name-servers 'DNS_yang_kalian_inginkan'**: DNS yang ingin kita berikan pada client
+    7. **default-lease-time 'Waktu'**: Default waktu yang diberikan DHCP server kepada client dalam menggunakan alamat IP yang diberikan
+    8. **max-lease-time 'Waktu'**: Waktu maksimal yang digunakan DHCP server untuk memberikan pembagian IP
 
+     ![13](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/13.png)
+    
     Sehingga, konfigurasinya menjadi seperti ini
     ```bash
     subnet 192.168.0.0 netmask 255.255.255.0 {
