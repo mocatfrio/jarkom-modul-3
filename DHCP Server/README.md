@@ -214,6 +214,6 @@ Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DH
 Jika **NGAGEL** dan **NGINDEN** berganti alamat IP dan **DARMO** tetap mendapatkan IP 192.168.0.15, maka DHCP server kalian berhasil dengan baik. 
 
 ## 1.3 Soal Latihan
-1. Buatlah konfigurasi DHCP agar NGAGEL dan NGINDEN mendapatkan IP dengan range 192.168.0.1-192.168.0.10 dan 192.168.0.12-192.168.0.16 dengan syarat:
+1. Buatlah konfigurasi DHCP agar NGAGEL dan NGINDEN mendapatkan IP dengan range 192.168.0.1 - 192.168.0.10 dan 192.168.0.12 - 192.168.0.16 dengan syarat:
     * Setiap 1 menit IP yang digunakan client berganti
     * DNS mengarah ke DNS server kalian sendiri yaitu KLAMPIS, tetapi tetap bisa digunakan untuk mengakses internet
