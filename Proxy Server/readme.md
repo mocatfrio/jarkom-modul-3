@@ -268,6 +268,7 @@ Keterangan:
 - **delay_class** digunakan untuk menentukan kelas dari pool yang telah dibuat. (Sintaks: **delay_class POOL_KE_BERAPA KELAS**.) Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_class/.
 - **delay_access** mirip seperti http_access, tetapi digunakan untuk mengakses pool yang telah dibuat (Sintaks: **delay_access POOL_KE_BERAPA allow/deny TARGET**. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_access/).
 - **delay_parameters** digunakan untuk mengatur parameter dari pool yang telah dibuat. Sintaks berbeda-beda sesuai dengan kelas dari pool yang dibuat. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_parameters/
+- **16000/64000** artinya bandwidth pada kondisi normal (trafik banyak) adalah 16000 Bps (128 kbps) dan pada saat kondisi kosong (tidak ada trafik lain) adalah 64000 Bps (512 kbps)
 - Penjelasan dari fitur **delay_pools** lebih lengkap bisa dilihat di https://wiki.squid-cache.org/Features/DelayPools
 
 ## 2.3 Soal Latihan
