@@ -2,30 +2,31 @@
 ## 1.1 Konsep Dasar
 ### 1.1.1 Pengertian
 
-**DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan nomor IP kepada komputer yang memintanya. 
+**DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan alamat IP kepada komputer yang memintanya. 
 
-![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/cara-kerja.png)
+![DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/cara-kerja.png)
 
-Sebuah jaringan lokal yang tidak menggunakan DHCP harus memberikan alamat IP kepada semua komputer secara manual. Namun jika DHCP dipasang di jaringan lokal, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server. Selain alamat IP, banyak parameter lain yang diberikan oleh DHCP, seperti default gateway dan DNS server.
-
-### 1.1.2 Jenis
-1. DHCP Client
-
-
+Tanpa DHCP, administrator jaringan harus memasukkan alamat IP masing-masing komputer dalam suatu jaringan secara manual. Namun jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server.
 
 ### 1.1.2 Cara Kerja
 
-![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/dhcp.png)
+DHCP bekerja dengan melibatkan dua pihak yakni **Server** dan **Client**: 
+
+1. **DHCP Server** memberikan suatu layanan yang dapat memberikan alamat IP dan parameter lainnya kepada semua client yang memintanya. 
+2. **DHCP Client** adalah mesin client yang menjalankan perangkat lunak client yang memungkinkan mereka untuk dapat berkomunikasi dengan DHCP server.
+
+DHCP Server umumnya memiliki sekumpulan alamat IP yang didistribusikan yang disebut **DHCP Pool**. Setiap client akan meminjamnya untuk rentan waktu yang ditentukan oleh DHCP sendiri (dalam konfigurasi). Jika masa waktu habis, maka client akan meminta alamat IP yang baru atau memperpanjangnya. Itulah sebabnya alamat IP client menjadi dinamis.
+
+![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/DHCP.gif)
+
+![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/block-aliran-dhcp.jpg)
 
 Terdapat 4 tahapan yang dilakukan dalam proses peminjaman alamat IP pada DHCP:
 
-1. **IP Least Request**: Client meminta alamat IP yang tersedia ke DHCP server (broadcast mencari DHCP server).
-
-2. **IP Least Offer**: DHCP server menjawab dengan memberikan penawaran alamat IP ke client tersebut.
-
-3. **IP Lease Selection**: Client memilih penawaran DHCP Server yang pertama diterima dan kembali melakukan broadcast menyetujui peminjaman alamat IP tersebut kepada DHCP Server.
-
-4. **IP Lease Acknowledge**: DHCP Server memberikan jawaban atas pesan tersebut berupa konfirmasi alamat IP dan informasi lain kepada client dengan sebuah ACKnowledgment. Setelah server meminjamkan (lease) alamat IP, server juga mencoret alamat IP tersebut dari daftar pool (alamat IP yang tersedia). Client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut.
+1. **DHCPDISCOVER**: Client menyebarkan request secara broadcast untuk mencari DHCP Server yang aktif.
+2. **DHCPOFFER**: DHCP server menawarkan  alamat IP kepada client. Alamat IP yang ditawarkan adalah salah satu alamat yang tersedia dalam DHCP Pool pada DHCP Server yang bersangkutan.
+3. **DHCPREQUEST**: Client menerima tawaran dan menyetujui peminjaman alamat IP tersebut kepada DHCP Server.
+4. **DHCPACK**: DHCP server menyetujui permintaan alamat IP dari client dengan mengirimkan paket ACKnoledgment berupa konfirmasi alamat IP dan informasi lain. Kemudian client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut dan client dapat bekerja pada jaringan tersebut. 
 
 ## 1.2 Konfigurasi
 ### 1.2.1 Instalasi ISC-DHCP-Server
@@ -69,7 +70,7 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
         max-lease-time 'Waktu';
     }
     ```
-    DHCP Server tidak hanya bisa mengatur range IP. Banyak parameter jaringan yang dapat diberikan oleh DHCP, seperti default gateway dan DNS server. Berikut ini beberapa **parameter jaringan** yang sering digunakan :
+    Selain alamat IP, banyak parameter jaringan yang dapat didistribusikan oleh DHCP, seperti informasi netmask, default gateway dan DNS server. Berikut ini beberapa **parameter jaringan** yang sering digunakan :
 
     [INI PENJELASAN]
 
