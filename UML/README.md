@@ -42,7 +42,7 @@ Topologi jaringan yang akan digunakan pada modul 3 adalah
 **Keterangan** : 
 * Jangan lupa mengubah **ip_tuntap_tiap_kelompok** sesuai kelompok masing-masing
 * Memori router **GEBANG** ditambah karena akan menjadi DHCP Server
-* Memori server **KLAMPIS** dan **PUCANG** ditambah karena akan menjadi Proxy dan DNS Server 
+* Memori server **KLAMPIS** dan **PUCANG** ditambah karena akan menjadi DNS Server dan Proxy 
 
 ## Konfigurasi Interface
 Konfigurasi interface lengkap-nya sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
