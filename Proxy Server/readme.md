@@ -1,12 +1,12 @@
-# Proxy Server
+# 2. Proxy Server
 
-## 1. Pengertian, Fungsi, dan Manfaat
-### 1.1 Pengertian
+## 2.1 Pengertian, Fungsi, dan Manfaat
+### 2.1.1 Pengertian
 Proxy server adalah sebuah server atau program komputer yang berperan sebagai penghubung antara suatu komputer dengan jaringan internet. Atau dalam kata lain, proxy server adalah suatu jaringan yang menjadi perantara antara jaringan lokal dan jaringan internet.
 
 Proxy server dapat berupa suatu sistem komputer ataupun sebuah aplikasi yang bertugas menjadi gateway atau pintu masuk yang menghubungan komputer kita dengan jaringan luar.
 
-### 1.2 Fungsi
+### 2.1.2 Fungsi
 1. ***Connection sharing*** :
 Proxy bertindak sebagai gateway yang menjadi pembatas antara jaringan lokal dengan jaringan luar. Gateway bertindak juga sebagai sebuah titik dimana sejumlah koneksi dari pengguna lokal dan koneksi jaringan luar juga terhubung kepadanya. Oleh sebab itu, koneksi dari jaringan lokal ke internet akan menggunakan sambungan yang dimiliki oleh gateway secara bersama-sama (connecion sharing).
 2. ***Filtering*** :
@@ -14,7 +14,7 @@ Proxy bisa difungsikan untuk bekerja pada layar aplikasi dengan demikian maka di
 3. ***Caching*** :
 Sebuah proxy server mempunyai mekanisme penyimpanan obyek-obyek yang telah diminta dari server-server yang ada di internet. Dengan mekanisme caching ini maka akan menyimpan objek-objek yang merupakan berbagai permintaan/request dari para pengguna yang di peroleh dari internet.
 
-### 1.3 Manfaat
+### 2.1.3 Manfaat
 Proxy server memiliki manfaat-manfaat berikut ini:
 - Membagi koneksi
 - Menyembunyikan IP
@@ -22,7 +22,7 @@ Proxy server memiliki manfaat-manfaat berikut ini:
 - Mengakses situs yang telah diblokir
 - Mengatur bandwith
 
-### 1.4 Software Proxy Server
+### 2.1.4 Software Proxy Server
 Beberapa contoh software proxy server yang sering digunakan adalah sebagai berikut:
 
 1. CCProxy
@@ -33,10 +33,10 @@ Beberapa contoh software proxy server yang sering digunakan adalah sebagai berik
 
 4. Nginx
 
-## 2. Implementasi
+## 2.2 Implementasi
 Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **SQUID**. UML yang digunakan sebagai proxy server adalah **PUCANG**.
 
-### 2.1 Instalasi Squid
+### 2.2.1 Instalasi Squid
 **STEP 1** - Pada UML **PUCANG**, ketikkan:
 
     apt-get install squid3
@@ -52,7 +52,7 @@ Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **S
 
 Jika muncul status **ok** maka instalasi telah berhasil.
 
-### 2.2 Konfigurasi Dasar Squid
+### 2.2.2 Konfigurasi Dasar Squid
 **STEP 1** - Backup terlebih dahulu file konfigurasi default yang disediakan squid. Ketikkan perintah berikut untuk melakukan backup: 
 
     mv /etc/squid3/squid.conf /etc/squid3/squid.conf.bak
@@ -108,7 +108,7 @@ Keterangan:
 - **http_access allow all** artinya memperbolehkan semuanya untuk mengakses proxy via http, perlu ditambahkan karena pengaturan default squid adalah **deny** (Sintaks: **http_access allow TARGET**)
 - Untuk menolak koneksi, maka **allow** diganti dengan **deny**
 
-### 2.3 Membuat User Login
+### 2.2.3 Membuat User Login
 **STEP 1** - Buat user dan password baru ke dalam squid. Ketikkan:
 
     htpasswd -c /etc/squid3/passwd jarkom204
@@ -156,7 +156,7 @@ Keterangan:
 - **acl** digunakan untuk mendefinisikan pengaturan akses tertentu. (Sintaks umum: **acl ACL_NAME ACL_TYPE ARGUMENT** . Lebih lengkapnya di http://www.squid-cache.org/Doc/config/acl/)
 - Untuk melihat daftar apa saja yang bisa diatur dengan acl bisa diakses di: https://wiki.squid-cache.org/SquidFaq/SquidAcl)
 
-### 2.4 Pembatasan Waktu Akses
+### 2.2.4 Pembatasan Waktu Akses
 
 Kita akan mencoba membatasi akses proxy pada hari dan jam tertentu. Asumsikan proxy dapat digunakan hanya pada hari **Senin** sampai **Jumat** pada jam **08.00-16.00**.
 
@@ -199,7 +199,7 @@ Keterangan:
 - **MTWHF** adalah kumpulan nama hari-hari dimana user diperbolehkan menggunakan proxy. (S: Sunday, M: Monday, T: Tuesday, W: Wednesday, H: Thursday, F: Friday, A: Saturday)
 - Penulisan jam: **h1:m1-h2:m2**. Dengan syarat **h1<h2** dan **m1<m2**
 
-### 2.5 Pembatasan Akses ke Website Tertentu
+### 2.2.5 Pembatasan Akses ke Website Tertentu
 
 Kita akan mencoba membatasi akses ke beberapa website. Untuk contoh disini, kita akan memblokir website **E-Learning IF**
 
@@ -230,7 +230,7 @@ Kita akan mencoba membatasi akses ke beberapa website. Untuk contoh disini, kita
 Keterangan:
 - **dstdomain** artinya destination domain/domain tujuan. Bisa diikuti dengan nama doma
 
-### 2.6 Pembatasan Bandwidth
+### 2.2.6 Pembatasan Bandwidth
 
 Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user proxy. Untuk contoh disini kita akan membatasi penggunaannya maksimal 512 kbps.
 
@@ -263,4 +263,4 @@ Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user prox
 
 ![Pucang23](images/23.png) ![Pucang24](images/24.png)
 
-## 3. Soal Latihan
+## 2.3 Soal Latihan
