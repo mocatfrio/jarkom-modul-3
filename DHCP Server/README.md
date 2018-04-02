@@ -153,7 +153,7 @@ Lakukan kembali langkah-langkah di atas pada client **NGINDEN** dan **DARMO**.
 
 ## 1.2.4 Fixed Address
 
-Ternyata PC **DARMO** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap connect WiFi. Oleh karena itu, **DARMO** membutuhkan IP tetap. Untungnya DHCP Server memiliki layanan untuk "menyewakan" alamat IP pada suatu host, yaitu menggunakan **Fixed Address**. Dalam kasus ini, **DARMO** akan mendapatkan IP tetap 192.168.0.25.
+Ternyata PC **DARMO** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap connect WiFi. Oleh karena itu, **DARMO** membutuhkan IP tetap. Untungnya DHCP Server memiliki layanan untuk "menyewakan" alamat IP pada suatu host, yaitu menggunakan **Fixed Address**. Dalam kasus ini, **DARMO** akan mendapatkan IP tetap 192.168.0.15.
 
 Lakukanlah,
 
@@ -165,7 +165,7 @@ Lakukanlah,
     ```bash
     host darmo {
         hardware ethernet 'hwaddress_darmo';
-        fixed-address 192.168.0.25;
+        fixed-address 192.168.0.15;
     }
     ```
     ![9](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/9.png)
