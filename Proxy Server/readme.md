@@ -152,7 +152,7 @@ Keterangan:
 - `children` : mendefinisikan jumlah maksimal autentikator muncul.
 - `realm` : teks yang akan muncul pada pop-up autentikasi.
 - `credentialsttl` : mengatur masa aktif suatu autentikasi berlaku.
-- `casesensitive` : untuk mengatur apakah **username**bersifat case sensitive atau tidak.
+- `casesensitive` : untuk mengatur apakah **username** bersifat case sensitive atau tidak.
 - **acl** digunakan untuk mendefinisikan pengaturan akses tertentu. (Sintaks umum: **acl ACL_NAME ACL_TYPE ARGUMENT** . Lebih lengkapnya di http://www.squid-cache.org/Doc/config/acl/)
 - Untuk melihat daftar apa saja yang bisa diatur dengan acl bisa diakses di: https://wiki.squid-cache.org/SquidFaq/SquidAcl)
 
@@ -228,7 +228,7 @@ Kita akan mencoba membatasi akses ke beberapa website. Untuk contoh disini, kita
 ![Pucang19](images/19-new.png)
 
 Keterangan:
-- **dstdomain** artinya destination domain/domain tujuan. Bisa diikuti dengan nama doma
+- **dstdomain** artinya destination domain/domain tujuan. Sintaksnya bisa diikuti dengan nama domain tujuan atau file yang menampung list-list alamat website.
 
 ### 2.2.6 Pembatasan Bandwidth
 
