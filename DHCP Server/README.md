@@ -4,7 +4,7 @@
 
 **DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan alamat IP kepada komputer yang memintanya. 
 
-![DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/cara-kerja.png)
+![DHCP](images/cara-kerja.png)
 
 Tanpa DHCP, administrator jaringan harus memasukkan alamat IP masing-masing komputer dalam suatu jaringan secara manual. Namun jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server.
 
@@ -17,9 +17,9 @@ DHCP bekerja dengan melibatkan dua pihak yakni **Server** dan **Client**:
 
 DHCP Server umumnya memiliki sekumpulan alamat IP yang didistribusikan yang disebut **DHCP Pool**. Setiap client akan meminjamnya untuk rentan waktu yang ditentukan oleh DHCP sendiri (dalam konfigurasi). Jika masa waktu habis, maka client akan meminta alamat IP yang baru atau memperpanjangnya. Itulah sebabnya alamat IP client menjadi dinamis.
 
-![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/DHCP.gif)
+![Cara Kerja DHCP](images/DHCP.gif)
 
-![Cara Kerja DHCP](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/block-aliran-dhcp.jpg)
+![Cara Kerja DHCP](images/block-aliran-dhcp.jpg)
 
 Terdapat 4 tahapan yang dilakukan dalam proses peminjaman alamat IP pada DHCP:
 
@@ -35,7 +35,7 @@ Kita akan menjadikan router **GEBANG** sebagai DHCP Server. Oleh karena itu, ins
 1. Update dulu **GEBANG**-nya dengan ```apt-get update```
 2. Setelah mengupdate, install **isc-dhcp-server** dengan ```apt-get install isc-dhcp-server```
 
-    ![1](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/1.png)
+    ![1](images/ss/1.png)
 
     **Keterangan** : Jangan panik dengan tulisan **[FAIL]**. Coba dibaca baik-baik, itu yang gagal bukanlah proses instalasinya, tetapi proses starting DHCP server-nya. Hal itu terjadi karena kita belum mengkonfigurasi interface-nya. Yuk capcus ke langkah selanjutnya!
 
@@ -53,7 +53,7 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     ```
     INTERFACES="eth2"
     ```
-    ![2](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/2.png)
+    ![2](images/ss/2.png)
 
 3. Buka ```/etc/dhcp/dhcpd.conf``` untuk mengatur range IP yang akan digunakan dalam DHCP server
     ```
@@ -72,7 +72,7 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     ```
     Selain alamat IP, banyak parameter jaringan yang dapat didistribusikan oleh DHCP, seperti informasi netmask, default gateway dan DNS server. Berikut ini beberapa **parameter jaringan dasar** yang biasanya digunakan adalah:
 
-    ![13](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/13.png)
+    ![13](images/ss/13.png)
 
     * **subnet 'NID'**: Network ID pada subnet
     * **netmask 'Netmask'**: Netmask pada subnet
@@ -95,7 +95,7 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
         max-lease-time 7200;
     }
     ```
-    ![3](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/3.png)
+    ![3](images/ss/3.png)
 
 
 5. Jangan lupa restart!
@@ -107,14 +107,14 @@ Supaya DHCP Server bisa berjalan dengan baik, kita harus mengkonfigurasi interfa
     service isc-dhcp-server stop
     service isc-dhcp-server start
     ```
-    ![4](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/4.png)
+    ![4](images/ss/4.png)
 
 ### 1.2.3 Konfigurasi DHCP Client
 Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapatkan IP dinamis dari DHCP server. Client yang akan kita berikan IP dinamis adalah **NGAGEL**, **NGINDEN**, dan **DARMO**. Lakukanlah,
 
 1. Sebelumnya, coba cek terlebih dahulu IP **NGAGEL** dengan ```ifconfig```
     
-    ![5](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/5.png)
+    ![5](images/ss/5.png)
 
     Dari konfigurasi sebelumnya, IP **NGAGEL** telah di set 192.168.0.2
 
@@ -127,7 +127,7 @@ Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapat
     auto eth0
     iface eth0 inet dhcp
     ```
-    ![6](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/6.png)
+    ![6](images/ss/6.png)
 
     **Keterangan**: **eth0** adalah interface yang digunakan client.
 
@@ -135,15 +135,15 @@ Kita juga perlu mengkonfigurasi interface client supaya client tersebut mendapat
     ```bash
     service networking restart
     ```
-    ![7](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/7.png)
+    ![7](images/ss/7.png)
 
 5. Testing
 
     Coba cek kembali IP **NGAGEL** dengan melakukan ```ifconfig```
 
-    ![8](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/8.png)
+    ![8](images/ss/8.png)
 
-    ![15](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/15.png)
+    ![15](images/ss/15.png)
 
     Yeay! IP **NGAGEL** telah berubah sesuai dengan range IP yang diberikan oleh DHCP Server, serta nameserver-nya otomatis ter-set mengarah ke 202.46.129.2. Berarti DHCP kalian berhasil.
 
@@ -170,13 +170,13 @@ Lakukanlah,
         fixed-address 192.168.0.15;
     }
     ```
-    ![9](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/9.png)
+    ![9](images/ss/9.png)
 
     **Penjelasan:**
     
     * **hardware ethernet** didapatkan dari **hardware address** dari **DARMO**, dengan cara ```ifconfig```
 
-        ![14](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/14.png)
+        ![14](images/ss/14.png)
 
     * **fixed-address** adalah alamat IP yang "disewa" oleh **DARMO**
     
@@ -194,7 +194,7 @@ Lakukanlah,
     hwaddress ether 'hwaddress_darmo'
     ```
     
-    ![10](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/10.png)
+    ![10](images/ss/10.png)
 
     **Keterangan:** Hardware address perlu di-setting juga di **/etc/network/interfaces** karena perangkat yang kalian gunakan adalah perangkat virtual (UML) dimana hwaddress-nya akan berubah setiap kali di-restart
 
@@ -202,13 +202,13 @@ Lakukanlah,
     ```bash
     service networking restart
     ```
-    ![11](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/11.png)
+    ![11](images/ss/11.png)
 
 5. Testing
 
     Coba cek IP **DARMO** dengan melakukan ```ifconfig```
 
-    ![12](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/DHCP%20Server/images/ss/12.png)
+    ![12](images/ss/12.png)
 
     Yeay! IP **DARMO** telah berubah menjadi 192.168.0.15 sesuai dengan Fixed Address yang diberikan oleh DHCP Server.
 
