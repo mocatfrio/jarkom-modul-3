@@ -12,7 +12,7 @@
 
 Topologi jaringan yang akan digunakan pada modul 3 adalah
 
-![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/master/UML/images/topologi.png)
+![Topologi](https://github.com/mocatfrio/Jarkom-Modul-3/blob/tahun-lalu/UML/images/topologi.png)
 
 1. Hapus terlebih dahulu file UML yang tidak diperlukan lagi bekas praktikum kemarin
     ```bash
