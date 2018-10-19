@@ -15,9 +15,9 @@ Berikut adalah topologi jaringan yang akan digunakan pada modul 3.
 2. Sesuaikan script ```topologi.sh``` dengan gambar topologi di atas dengan tambahan ketentuan sebagai berikut:
     * Default memori adalah **96M**
     * Memori router **BAKSO** diubah menjadi **256M** karena akan menjadi DHCP Server.
-    * Memori server **KATSU** dan **PIZZA** diubah menjadi **128M**karena akan menjadi DNS Server dan Proxy server.
+    * Memori server **KATSU** dan **PIZZA** diubah menjadi **128M** karena akan menjadi DNS Server dan Proxy server.
    
-4. Selebihnya dan selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
+4. Selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
 
 ## 2. Konfigurasi Interface
 Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
