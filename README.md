@@ -6,7 +6,7 @@ Sebelum mengikuti Sesilab Modul 3 Jaringan Komputer, praktikan wajib menyiapkan:
 
 ## Materi
 1. [Dynamic Host Configuration Protocol (DHCP)](/DHCP-Server)
-2. Proxy Server
+2. [Proxy Server](/Proxy)
 
 ## Troubleshoot
 Beberapa masalah-masalah dasar terkait dengan UML dan cara penyelesaiannya:
