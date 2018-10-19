@@ -12,38 +12,17 @@ Berikut adalah topologi jaringan yang akan digunakan pada modul 3.
     ```
     **Himbauan!!!**
     * Jangan coba-coba melakukan `rm *` karena akan menghapus semuanya, termasuk file **jarkom**. Jika file tersebut terhapus, segera hubungi asisten.
-2. Sesuaikan file ```topologi.sh``` dengan gambar topologi di atas 
-
-    ```bash
-    #Switch
-    uml_switch -unix switch1 > /dev/null < /dev/null &
-    uml_switch -unix switch2 > /dev/null < /dev/null &
-
-    #Router + DHCP Server
-    xterm -T BAKSO -e linux ubd0=BAKSO,jarkom umid=BAKSO eth0=tuntap,,,'ip_tuntap_tiap_kelompok' eth1=daemon,,,switch2 eth2=daemon,,,switch1 mem=256M &
-    
-    #DNS Server
-    xterm -T KATSU -e linux ubd0=KATSU,jarkom umid=KATSU eth0=daemon,,,switch2 mem=128M &
-
-    #Proxy Server
-    xterm -T PIZZA -e linux ubd0=PIZZA,jarkom umid=PIZZA eth0=daemon,,,switch2 mem=128M &
-
-    #Client
-    xterm -T SOTO -e linux ubd0=SOTO,jarkom umid=SOTO eth0=daemon,,,switch1 mem=96M &
-    xterm -T KARI -e linux ubd0=KARI,jarkom umid=KARI eth0=daemon,,,switch1 mem=96M &
-    xterm -T PECEL -e linux ubd0=PECEL,jarkom umid=PECEL eth0=daemon,,,switch1 mem=96M &
-    ```
-    **Keterangan** : 
-    * Jangan lupa mengubah **ip_tuntap_tiap_kelompok** sesuai kelompok masing-masing
-    * Memori router **BAKSO** ditambah karena akan menjadi DHCP Server
-    * Memori server **KATSU** dan **PIZZA** ditambah karena akan menjadi DNS Server dan Proxy server
-3. Selebihnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
+2. Sesuaikan script ```topologi.sh``` dengan gambar topologi di atas dengan tambahan ketentuan sebagai berikut:
+    * Default memori adalah **96M**
+    * Memori router **BAKSO** diubah menjadi **256M** karena akan menjadi DHCP Server.
+    * Memori server **KATSU** dan **PIZZA** diubah menjadi **128M**karena akan menjadi DNS Server dan Proxy server.
+   
+4. Selebihnya dan selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
 
 ## 2. Konfigurasi Interface
 Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
 
 * **PECEL (Sebagai Client)**
-
     ```bash
     auto eth0
     iface eth0 inet static
@@ -52,7 +31,7 @@ Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udi
     gateway 192.168.0.1
     ```
 ## 3. Instalasi
-Dalam modul ini, kita akan membutuhkan 3 aplikasi:
+Dalam modul ini, kita akan membutuhkan 3 aplikasi yang harus terinstall, yaitu:
 * **isc-dhcp-server** (DHCP Server)
 * **squid3** (Proxy Server)
 * **bind9** (DNS Server)
@@ -75,7 +54,7 @@ Lakukan langkah-langkah berikut:
     apt-get install bind9
     ```
 # PENTING UNTUK DIINGAT!!!
-Lakukan beberapa hal dasar di bawah ini setiap kali kamu membuka UML:
+Lakukan beberapa hal dasar di bawah ini setiap kali kamu menjalankan UML:
 1. Menjalankan `iptables –t nat –A POSTROUTING –o eth0 –j MASQUERADE –s 192.168.0.0/16` pada router **BAKSO** agar client bisa terhubung dengan internet.
 2. Menjalankan **export proxy** pada **semua UML** menggunakan Akun VPN yang bisa didapatkan di [https://id.its.ac.id/otp/](https://id.its.ac.id/otp/).
     ```bash
@@ -87,4 +66,4 @@ Lakukan beberapa hal dasar di bawah ini setiap kali kamu membuka UML:
 3. Melakukan `apt-get update` sebelum menginstal sesuatu.
 
 ## Selamat Menyiapkan :)
-n.b. Jika terjadi masalah, silahkan membuka [troubleshoot dasar](../troubleshoot.md). Jika masalah yang dihadapi tidak ada di troubleshoot tersebut, silahkan gugling. Jika masih juga belum menemukan solusinya, silahkan bertanya pada asisten untuk diajarin gugling :) 
+n.b. Jika terjadi masalah, silahkan membuka [troubleshoot dasar](../troubleshoot.md). Jika masalah yang dihadapi tidak ada di troubleshoot tersebut, silahkan gugling. Jika masih juga belum menemukan solusinya, silahkan bertanya pada asisten kesayangan kamu untuk diajarin gugling :) 
