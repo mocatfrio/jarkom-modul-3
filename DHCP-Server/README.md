@@ -71,7 +71,7 @@ Pada topologi ini, kita akan menjadikan router **BAKSO** sebagai DHCP Server. Ol
     ![Screenshot 1](images/ss-1.png)
 
     **[FAIL]** 
-    Eits, jangan panik dulu!!! Coba dibaca baik-baik, yang gagal bukanlah proses instalasinya, namun proses `starting ISC DHCP server`. Hal ini terjadi karena kita belum mengkonfigurasi interface-nya. Mari kita lanjutkan ke langkah selanjutnya!
+    Eits, jangan panik dulu!!! Coba dibaca baik-baik, yang gagal bukanlah proses instalasinya, namun proses `starting ISC DHCP server`. Hal ini terjadi karena kita belum mengonfigurasi interface-nya. Mari kita lanjutkan ke langkah selanjutnya!
 
 ### 1.2.2 Konfigurasi DHCP Server
 Langkah pertama yang harus dilakukan setelah instalasi adalah **menentukan interface** mana yang akan diberikan layanan DHCP. Konfigurasi interface terletak di `/etc/default/isc-dhcp-server`.
@@ -91,7 +91,7 @@ Maka, lakukanlah:
 
     ![Screenshot 3](images/ss-3.png)
 
-Setelah menentukan interface, langkah selanjutnya adalah **mengkonfigurasi DHCP**-nya. Ada banyak hal yang dapat dikonfigurasi, antara lain:
+Setelah menentukan interface, langkah selanjutnya adalah **mengonfigurasi DHCP**-nya. Ada banyak hal yang dapat dikonfigurasi, antara lain:
 * Range IP
 * DNS Server
 * Informasi Netmask
@@ -158,7 +158,7 @@ Konfigurasi DHCP terletak di `/etc/dhcp/dhcpd.conf`. Langkah-langkah yang harus 
 Konfigurasi DHCP Server selesai!
 
 ### 1.2.3 Konfigurasi DHCP Client
-Setelah mengkonfigurasi server, kita juga perlu mengkonfigurasi interface client supaya client bisa mendapatkan layanan dari DHCP server. Di dalam topologi ini, clientnya adalah **SOTO**, **KARI**, dan **PECEL**. 
+Setelah mengonfigurasi server, kita juga perlu mengonfigurasi interface client supaya client bisa mendapatkan layanan dari DHCP server. Di dalam topologi ini, clientnya adalah **SOTO**, **KARI**, dan **PECEL**. 
 
 1. Sebelumnya, coba cek terlebih dahulu IP **SOTO** dengan `ifconfig`
     
@@ -166,7 +166,7 @@ Setelah mengkonfigurasi server, kita juga perlu mengkonfigurasi interface client
 
     Dari konfigurasi sebelumnya, **SOTO** telah diberikan IP static 192.168.0.2
 
-2. Kemudian buka `/etc/network/interfaces` untuk mengkonfigurasi interface **SOTO**.
+2. Kemudian buka `/etc/network/interfaces` untuk mengonfigurasi interface **SOTO**.
     ```bash
     nano /etc/network/interfaces
     ```
@@ -258,7 +258,7 @@ Lakukanlah:
     service isc-dhcp-server restart
     ```
 
-Setelah mengkonfigurasi DHCP server, kita juga harus mengkonfigurasi DHCP client. Lakukanlah:
+Setelah mengonfigurasi DHCP server, kita juga harus mengonfigurasi DHCP client. Lakukanlah:
 
 1. Buka file konfigurasi interface **PECEL**
     ```bash
