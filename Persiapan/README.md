@@ -13,11 +13,10 @@ Berikut adalah topologi jaringan yang akan digunakan pada modul 3.
     **Himbauan!!!**
     * Jangan coba-coba melakukan `rm *` karena akan menghapus semuanya, termasuk file **jarkom**. Jika file tersebut terhapus, segera hubungi asisten.
 2. Sesuaikan script ```topologi.sh``` dengan gambar topologi di atas dengan tambahan ketentuan sebagai berikut:
-    * Default memori adalah **96M**
-    * Memori router **BAKSO** diubah menjadi **256M** karena akan menjadi DHCP Server.
-    * Memori server **KATSU** dan **PIZZA** diubah menjadi **128M** karena akan menjadi DNS Server dan Proxy server.
-   
-4. Selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
+    * Memori client **SOTO**, **KARI**, dan **PECEL** adalah **64M**
+    * Memori router **BAKSO** adalah **256M** karena akan menjadi DHCP Server.
+    * Memori server **KATSU** dan **PIZZA** adalah **128M** karena akan menjadi DNS Server dan Proxy server.
+4. Langkah-langkah selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
 
 ## 2. Konfigurasi Interface
 Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
@@ -31,7 +30,7 @@ Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udi
     gateway 192.168.0.1
     ```
 ## 3. Instalasi
-Dalam modul ini, kita akan membutuhkan 3 aplikasi yang harus terinstall, yaitu:
+Dalam modul 3, kita akan menggunakan 3 aplikasi, yaitu:
 * **isc-dhcp-server** (DHCP Server)
 * **squid3** (Proxy Server)
 * **bind9** (DNS Server)
@@ -54,7 +53,7 @@ Lakukan langkah-langkah berikut:
     apt-get install bind9
     ```
 # PENTING UNTUK DIINGAT!!!
-Lakukan beberapa hal dasar di bawah ini setiap kali kamu menjalankan UML:
+Lakukan beberapa hal dasar di bawah ini setiap kali kamu **menjalankan UML**:
 1. Menjalankan `iptables –t nat –A POSTROUTING –o eth0 –j MASQUERADE –s 192.168.0.0/16` pada router **BAKSO** agar client bisa terhubung dengan internet.
 2. Menjalankan **export proxy** pada **semua UML** menggunakan Akun VPN yang bisa didapatkan di [https://id.its.ac.id/otp/](https://id.its.ac.id/otp/).
     ```bash

@@ -1,12 +1,38 @@
 # 1. Dynamic Host Configuration Protocol (DHCP)
-## 1.1 Konsep Dasar
-### 1.1.1 Pengertian
 
-**DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan alamat IP kepada komputer yang memintanya. 
+## 1.1 Konsep
+
+### 1.1.1 Pendahuluan
+Pada modul sebelumnya, kita telah mempelajari cara mengonfigurasi alamat IP, nameserver, gateway, dan subnetmask pada UML. Metode konfigurasi manual ini dapat diimplementasikan dengan mudah pada jaringan yang hanya memiliki sedikit host. Namun, apa yang terjadi jika suatu jaringan memiliki banyak host? Apakah Administrator Jaringan harus melakukan semua konfigurasi tersebut secara manual satu persatu ke semua host? Tentu tidak kawan!
+
+Misalnya pada kasus jaringan WiFi umum: Apakah kalian pernah terfikir, siapakah yang bertugas memberikan alamat IP pada setiap client yang terhubung ke jaringan WiFi? Tentu saja pengalokasian dan pemberian alamat IP tersebut tidak dilakukan secara manual karena client yang terhubung sangatlah banyak dan berganti-ganti. 
+
+Adapun kasus ini dapat diselesaikan oleh DHCP.
+
+### 1.1.2 Apa itu DHCP?
+
+**DHCP (Dynamic Host Configuration Protocol)** adalah protokol yang berbasis arsitektur client/server yang dipakai untuk memudahkan pengalokasian alamat IP dalam satu jaringan. DHCP secara otomatis meminjamkan alamat IP kepada host yang memintanya. 
 
 ![DHCP](images/cara-kerja.png)
 
-Tanpa DHCP, administrator jaringan harus memasukkan alamat IP masing-masing komputer dalam suatu jaringan secara manual. Namun jika DHCP dipasang di jaringan, maka semua komputer yang tersambung di jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server.
+Tanpa DHCP, administrator jaringan harus memasukkan alamat IP masing-masing komputer dalam suatu jaringan secara manual. Namun jika DHCP dipasang di jaringan, maka semua komputer yang tersambung ke jaringan akan mendapatkan alamat IP secara otomatis dari DHCP server.
+
+### 1.1.3 Bootstrap Protocol dan Dynamic Host Configuration Protocol
+
+Selain DHCP, terdapat protokol lain yang juga memudahkan pengalokasian alamat IP dalam suatu jaringan, yaitu Bootstrap Protocol (BOOTP). Perbedaan BOOTP dan DHCP terletak pada proses konfigurasinya.
+
+| BOOTP | DHCP |
+| --- | --- |
+| Administrator jaringan melakukan konfigurasi mapping MAC Address client dengan IP tertentu. | Server akan melakukan peminjaman IP Address dan konfigurasi lainnya dalam rentang waktu tertentu. Protokol ini dibuat berdasarkan cara kerja BOOTP. |
+
+### 1.1.4 DHCP Message Header
+
+![DHCP Message Header](images/DHCP-message-header.png "DHCP Message Header")
+
+Keterangan:
+
+![DHCP Message Header](images/DHCP-message-header-1.png "DHCP Message Header")
+
 
 ### 1.1.2 Cara Kerja
 
@@ -17,16 +43,18 @@ DHCP bekerja dengan melibatkan dua pihak yakni **Server** dan **Client**:
 
 DHCP Server umumnya memiliki sekumpulan alamat IP yang didistribusikan yang disebut **DHCP Pool**. Setiap client akan meminjamnya untuk rentan waktu yang ditentukan oleh DHCP sendiri (dalam konfigurasi). Jika masa waktu habis, maka client akan meminta alamat IP yang baru atau memperpanjangnya. Itulah sebabnya alamat IP client menjadi dinamis.
 
-![Cara Kerja DHCP](images/DHCP.gif)
-
-![Cara Kerja DHCP](images/block-aliran-dhcp.jpg)
+![Cara Kerja DHCP](images/DHCP.gif "Cara Kerja DHCP")
 
 Terdapat 4 tahapan yang dilakukan dalam proses peminjaman alamat IP pada DHCP:
 
-1. **DHCPDISCOVER**: Client menyebarkan request secara broadcast untuk mencari DHCP Server yang aktif.
-2. **DHCPOFFER**: DHCP server menawarkan  alamat IP kepada client. Alamat IP yang ditawarkan adalah salah satu alamat yang tersedia dalam DHCP Pool pada DHCP Server yang bersangkutan.
+1. **DHCPDISCOVER**: Client menyebarkan request secara broadcast untuk mencari DHCP Server yang aktif. DHCP Server menggunakan UDP port 67 untuk menerima broadcast dari client melalui port 68.
+2. **DHCPOFFER**: DHCP server menawarkan alamat IP (dan konfigurasi lainnya apabila ada) kepada client. Alamat IP yang ditawarkan adalah salah satu alamat yang tersedia dalam DHCP Pool pada DHCP Server yang bersangkutan.
 3. **DHCPREQUEST**: Client menerima tawaran dan menyetujui peminjaman alamat IP tersebut kepada DHCP Server.
-4. **DHCPACK**: DHCP server menyetujui permintaan alamat IP dari client dengan mengirimkan paket ACKnoledgment berupa konfirmasi alamat IP dan informasi lain. Kemudian client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut dan client dapat bekerja pada jaringan tersebut. 
+4. **DHCPACK**: DHCP server menyetujui permintaan alamat IP dari client dengan mengirimkan paket ACKnoledgment berupa konfirmasi alamat IP dan informasi lain. Kemudian client melakukan inisialisasi dengan mengikat (binding) alamat IP tersebut dan client dapat bekerja pada jaringan tersebut. DHCP Server akan mencatat peminjaman yang terjadi.
+5. **DHCPRELEASE**: Client menghentikan peminjaman alamat IP (apabila waktu peminjaman habis atau menerima DHCPNAK).
+
+![Cara Kerja DHCP](images/cara-kerja-1.png "Cara Kerja DHCP")
+Lebih lanjut: [https://www.nada.kth.se/kurser/kth/2D1392/05/lectures/lecture_9.pdf](https://www.nada.kth.se/kurser/kth/2D1392/05/lectures/lecture_9.pdf)
 
 ## 1.2 Implementasi
 ### 1.2.1 Instalasi ISC-DHCP-Server
