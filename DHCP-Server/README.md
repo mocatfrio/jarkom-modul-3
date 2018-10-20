@@ -126,8 +126,8 @@ Konfigurasi DHCP terletak di `/etc/dhcp/dhcpd.conf`. Langkah-langkah yang harus 
     | 5 | `option broadcast-address 'IP_Broadcast'` | IP broadcast pada subnet. |
     | 6 | `option domain-name-servers 'DNS_yang_diinginkan'` | DNS yang ingin kita berikan pada client. |
     | 7 | Lease time | Waktu yang dialokasikan ketika sebuah IP dipinjamkan kepada komputer client. Setelah waktu pinjam ini selesai, maka IP tersebut dapat dipinjam lagi oleh komputer yang sama atau komputer tersebut mendapatkan alamat IP lain jika alamat IP yang sebelumnya dipinjam, dipergunakan oleh komputer lain. |
-    | 8 | `default-lease-time 'Waktu'` | Lama waktu DHCP server meminjamkan alamat IP kepada client, dalam satuan detik. |
-    | 9 | `max-lease-time 'Waktu'` | Waktu maksimal yang di alokasikan untuk peminjaman IP oleh DHCP server ke client dalam satuan detik. |
+    | 8 | `default-lease-time 'Waktu'` | Lama waktu DHCP server meminjamkan alamat IP kepada client, dalam satuan detik. Default 600 detik.|
+    | 9 | `max-lease-time 'Waktu'` | Waktu maksimal yang di alokasikan untuk peminjaman IP oleh DHCP server ke client dalam satuan detik. Default 7200 detik. |
 
     ![Screenshot 2](images/ss-2.png)
 
