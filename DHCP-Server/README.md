@@ -34,7 +34,7 @@ Keterangan:
 ![DHCP Message Header](images/DHCP-message-header-1.png "DHCP Message Header")
 
 
-### 1.1.2 Cara Kerja
+### 1.1.5 Cara Kerja DHCP
 
 DHCP bekerja dengan melibatkan dua pihak yakni **Server** dan **Client**: 
 
