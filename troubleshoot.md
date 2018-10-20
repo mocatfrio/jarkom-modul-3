@@ -27,7 +27,7 @@ Silahkan baca terlebih dahulu sebelum kamu mengalami serangan panik akut heheheh
           Export proxy dilakukan supaya kamu bisa melewati proxy ITS dan bisa menginstal sesuatu.
 
 * **Jenis 2**
-  Muncul tulisan “Problem with MergeList”
+  * Muncul tulisan “Problem with MergeList”
   * Solusi: 
     1. Jalankan `rm -vf /var/lib/apt/lists/*` pada UML yang bersangkutan
     2. Lanjutkan dengan `apt-get update`
@@ -38,7 +38,7 @@ Silahkan baca terlebih dahulu sebelum kamu mengalami serangan panik akut heheheh
     1. Coba ketikkan `apt-get update` sekali lagi
 
 * **Jenis 4**
-  Muncul tulisan “the package lists or status file could not be parsed or opened”
+  * Muncul tulisan “the package lists or status file could not be parsed or opened”
   * Solusi:
     1. Jalankan
         ```bash
@@ -56,16 +56,16 @@ Silahkan baca terlebih dahulu sebelum kamu mengalami serangan panik akut heheheh
 #### 4. Segmentation fault
 * Penyebab: Mistis
 * **Jenis 1**
-  Segmentation fault ketika `apt-get install` atau `apt-get update`
+  * Segmentation fault ketika `apt-get install` atau `apt-get update`
   * Solusi:
     1. Jalankan `rm -r /var/cache/'nama_aplikasi_yang_segfault'`
 * **Jenis 2**
-  Segmentation fault ketika restart aplikasi
+  * Segmentation fault ketika restart aplikasi
   * Solusi:
     1. Jalankan `apt-get purge 'nama_aplikasi_yang_segfault'`
     2. Jalankan `apt-get autoremove`
 * **Jenis 3**
-  Ketika semua cara diatas tidak berhasil
+  * Ketika semua cara diatas tidak berhasil
   * Solusi:
     1. Ketik `halt` pada UML yang segfault
     2. Hapus UML yang segfault, misalnya yang segfault **BAKSO** ketikkan `rm BAKSO`
@@ -73,4 +73,5 @@ Silahkan baca terlebih dahulu sebelum kamu mengalami serangan panik akut heheheh
     4. Jalankan ulang script `topologi.sh` dengan `bash topologi.sh`
     5. Konfigurasi ulang UML yang segfault.
 
-**SARAN:** Selalu back-up semua konfigurasi kamu pada setiap UML. Sehingga, jika sewaktu-waktu UML ada yang segfault, maka kamu tinggal copy-paste konfigurasi.
+**SARAN:** 
+Selalu back-up semua konfigurasi kamu pada setiap UML. Sehingga, jika sewaktu-waktu UML ada yang segfault, maka kamu tinggal copy-paste konfigurasi.
