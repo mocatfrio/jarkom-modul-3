@@ -65,4 +65,4 @@ Lakukan beberapa hal dasar di bawah ini setiap kali kamu **menjalankan UML**:
 3. Melakukan `apt-get update` sebelum menginstal sesuatu.
 
 ## Selamat Menyiapkan :)
-n.b. Jika terjadi masalah, silahkan membuka [troubleshoot](../troubleshoot.md). Jika masalah yang dihadapi tidak ada di troubleshoot tersebut, silahkan gugling. Jika masih juga belum menemukan solusinya, silahkan bertanya pada asisten kesayangan kamu :) 
+n.b. Jika terjadi masalah, silahkan membuka [troubleshoot](../troubleshoot.md). Jika masalah yang dihadapi tidak ada di troubleshoot tersebut, silahkan gugling. Jika masih juga belum menemukan solusinya, silahkan bertanya pada asisten kesayangan kamu :3
