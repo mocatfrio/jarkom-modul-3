@@ -228,7 +228,7 @@ Setelah IP dipinjamkan ke sebuah client, maka IP tersebut tidak akan diberikan k
 > >
 >    Ternyata PC **PECEL** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap **PECEL** terhubung ke jaringan internet. Oleh karena itu, **PECEL** membutuhkan IP yang tidak berganti-ganti. 
 
-Untuk menyelesaikan kasus tersebut, DHCP Server memiliki layanan untuk "menyewakan" alamat IP secara tetap pada suatu host, yaitu menggunakan **Fixed Address**. Dalam kasus ini, **PECEL** akan mendapatkan IP tetap 192.168.0.15.
+Untuk menyelesaikan kasus tersebut, DHCP Server memiliki layanan untuk "menyewakan" alamat IP secara tetap pada suatu host, yakni **Fixed Address**. Dalam kasus ini, **PECEL** akan mendapatkan IP tetap 192.168.0.15.
 
 Lakukanlah:
 
@@ -247,7 +247,7 @@ Lakukanlah:
 
     **Penjelasan:**
     
-    * Untuk mencari `'hwaddress_PECEL'` (hardware address) kalian bisa mengeceknya di uml **PECEL** dengan command `ifconfig`
+    * Untuk mencari `'hwaddress_PECEL'` (hardware address) kalian bisa mengeceknya di UML **PECEL** dengan command `ifconfig`
 
         ![Screenshot 16](images/ss-16.png)
 
@@ -272,15 +272,15 @@ Setelah mengonfigurasi DHCP server, kita juga harus mengonfigurasi DHCP client. 
     ![Screenshot 18](images/ss-18.png)
 
     **Keterangan:** 
-    Hardware address perlu di-setting juga di **/etc/network/interfaces** karena perangkat yang kalian gunakan adalah perangkat virtual (UML) dimana hwaddress-nya akan berubah setiap kali di-restart.
+    Hardware address perlu di-setting juga di **/etc/network/interfaces** karena perangkat yang kalian gunakan adalah perangkat virtual (UML) dimana hwaddress-nya akan berubah setiap kali dijalankan.
 
-4. Jangan lupa restart!
+3. Jangan lupa restart!
     ```bash
     service networking restart
     ```
     ![Screenshot 19](images/ss-19.png)
 
-5. Testing
+4. Testing
 
     Coba cek IP **PECEL** dengan melakukan ```ifconfig```
 
