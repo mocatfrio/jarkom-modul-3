@@ -226,7 +226,7 @@ Setelah IP dipinjamkan ke sebuah client, maka IP tersebut tidak akan diberikan k
 
 > **Sebuah Kasus:**
 > >
->    Ternyata PC **PECEL** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap connect ke internet. Oleh karena itu, **PECEL** membutuhkan IP tetap. 
+>    Ternyata PC **PECEL** selain menjadi client, juga akan digunakan sebagai server suatu aplikasi, sehingga akan menyulitkan jika IP nya berganti-ganti setiap **PECEL** terhubung ke jaringan internet. Oleh karena itu, **PECEL** membutuhkan IP yang tidak berganti-ganti. 
 
 Untuk menyelesaikan kasus tersebut, DHCP Server memiliki layanan untuk "menyewakan" alamat IP secara tetap pada suatu host, yaitu menggunakan **Fixed Address**. Dalam kasus ini, **PECEL** akan mendapatkan IP tetap 192.168.0.15.
 
