@@ -34,21 +34,21 @@ Beberapa contoh software proxy server yang sering digunakan adalah sebagai berik
 4. Nginx
 
 ## 2.2 Implementasi
-Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **SQUID**. UML yang digunakan sebagai proxy server adalah **PUCANG**.
+Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **SQUID**. UML yang digunakan sebagai proxy server adalah **PIZZA**.
 
 ### 2.2.1 Instalasi Squid
-**STEP 1** - Pada UML **PUCANG**, ketikkan:
+**STEP 1** - Install squid3 pada UML **PIZZA**, ketikkan:
 
     apt-get install squid3
 
-![Pucang1](images/1.png)
+![install squid3](images/001.png "install squid3")
 
 
 **STEP 2** - Cek status squid3 dengan mengetikkan 
 
     service squid3 status
 
-![Pucang2](images/2.png)
+![cek status squid3](images/002.png "cek status squid3")
 
 Jika muncul status **ok** maka instalasi telah berhasil.
 
@@ -57,72 +57,71 @@ Jika muncul status **ok** maka instalasi telah berhasil.
 
     mv /etc/squid3/squid.conf /etc/squid3/squid.conf.bak
 
-![Pucang3](images/3.png)
-
-Perintah di atas artinya mengubah ekstensi file **squid.conf** menjadi **squid.conf.bak** dan menyimpannya di directory yang sama (tidak pindah folder).
+![Back up konfigurasi default squid](images/003.png "Back up konfigurasi default squid")
 
 **STEP 2** - Buat konfigurasi baru dengan mengetikkan:
 
     nano /etc/squid3/squid.conf
     
-![Pucang4](images/4.png)
+![Membuat konfigurasi baru](images/004.png "Membuat konfigurasi baru")
 
 **STEP 3** - Kemudian, pada file config yang baru, ketikkan:
 
     http_port 8080
-    visible_hostname pucang
+    visible_hostname pizza
 
-![Pucang5](images/5.png)
+![Pizza](images/005.png)
 
 Konfigurasi di atas berarti:
 - Menggunakan port 8080
-- Nama yang akan terlihat pada status: pucang
+- Nama yang akan terlihat pada status: pizza
 
 **STEP 4** - Restart squid dengan cara mengetikkan perintah:
 
     service squid3 restart
 
-![Pucang6](images/6.png)
+![Restart squid](images/006.png "Restart squid")
 
-**STEP 5** - Ubah pengaturan proxy browser. Gunakan **IP PUCANG** sebagai host, dan isikan port **8080**.
+**STEP 5** - Ubah pengaturan proxy browser. Gunakan **IP PIZZA** sebagai host, dan isikan port **8080**. Kemudian cobalah untuk mengakses web **http://its.ac.id** (usahakan menggunakan mode **incognito/private**), akan muncul halaman seperti berikut:
 
-**STEP 6** - Cobalah untuk mengakses web **its.ac.id** (usahakan menggunakan mode **incognito/private**). Seharusnya yang muncul adalah sebagai berikut.
+![Access Denied](images/007.png "Access Denied")
 
-![Pucang7](images/7.png)
-
-**STEP 7** - Supaya bisa mengakses web **its.ac.id**, buka kembali file konfigurasi squid yang sudah dibuat tadi
-
-**STEP 8** - Tambahkan baris berikut.
+**STEP 7** - Supaya bisa mengakses web **http://its.ac.id**, buka kembali file konfigurasi squid yang sudah dibuat tadi dan tambahkan baris berikut.
 
     http_access allow all
 
-![Pucang8](images/8.png)
+![Allow all](images/008.png "Allow all")
 
-**STEP 9** - **Simpan** file konfigurasi tersebut, lalu **restart** squid.
-
-**STEP 10** - Refresh halaman web **its.ac.id**. Seharusnya halaman yang ditampilkan kembali normal.
+**STEP 9** - **Simpan** file konfigurasi tersebut, lalu **restart** squid. Refresh halaman web **http://its.ac.id**. Seharusnya halaman yang ditampilkan kembali normal.
 
 Keterangan:
 - **http_port 8080** berarti menggunakan port 8080 untuk mengakses proxy (Sintaks: **http_port PORT_YANG_DIINGINKAN**)
-- **visible_hostname pucang** adalah sintaks untuk memberikan nama proxy yang dapat dilihat user (Sintaks: **visible_hostname NAMA_YANG_DIINGINKAN**)
+- **visible_hostname pizza** adalah sintaks untuk memberikan nama proxy yang dapat dilihat user (Sintaks: **visible_hostname NAMA_YANG_DIINGINKAN**)
 - **http_access allow all** artinya memperbolehkan semuanya untuk mengakses proxy via http, perlu ditambahkan karena pengaturan default squid adalah **deny** (Sintaks: **http_access allow TARGET**)
 - Untuk menolak koneksi, maka **allow** diganti dengan **deny**
 
 ### 2.2.3 Membuat User Login
-**STEP 1** - Buat user dan password baru ke dalam squid. Ketikkan:
+
+**STEP 1** - Install apache2-utils pada UML **PIZZA**. Ketikkan:
+
+    apt-get install apache2-utils
+
+![Install apache2-utils](images/010.png "Install apache2-utils")
+
+**STEP 2** - Buat user dan password baru. Ketikkan:
 
     htpasswd -c /etc/squid3/passwd jarkom204
     
-![Pucang9](images/9.png)
+![Membuat user](images/011.png "Mebuat user")
 
 Ketikkan password yang diinginkan. Jika sudah maka akan muncul notifikasi:
 
-![Pucang10](images/10.png)
+![Pizza10](images/012.png)
 
-**STEP 2** - Edit konfigurasi squid menjadi:
+**STEP 3** - Edit konfigurasi squid menjadi:
 
     http_port 8080
-    visible_hostname pucang
+    visible_hostname pizza
     
     auth_param basic program /usr/lib/squid3/ncsa_auth /etc/squid3/passwd
     auth_param basic children 5
@@ -132,15 +131,13 @@ Ketikkan password yang diinginkan. Jika sudah maka akan muncul notifikasi:
     acl USERS proxy_auth REQUIRED
     http_access allow USERS
 
-![Pucang11](images/11.png)
+![Pizza11](images/013.png)
 
-**STEP 3** - Restart squid
+**STEP 4** - Restart squid
 
-**STEP 4** - Ubah pengaturan proxy browser. Gunakan **IP PUCANG** sebagai host, dan isikan port **8080**.
+**STEP 5** - Ubah pengaturan proxy browser. Gunakan **IP PIZZA** sebagai host, dan isikan port **8080**. Kemudian cobalah untuk mengakses web **elearning.if.its.ac.id** (usahakan menggunakan mode **incognito/private**), akan muncul pop-up untuk login.
 
-**STEP 5** - Cobalah untuk mengakses web **elearning.if.its.ac.id** (usahakan menggunakan mode **incognito/private**). Seharusnya muncul pop-up untuk login.
-
-![Pucang12](images/12.png)
+![Pizza12](images/014.png)
 
 **STEP 6** - Isikan username dan password.
 
@@ -164,17 +161,17 @@ Kita akan mencoba membatasi akses proxy pada hari dan jam tertentu. Asumsikan pr
 
     nano /etc/squid3/acl.conf
 
-![Pucang13](images/13.png)
+![Pizza13](images/015.png)
 
 **STEP 2** - Tambahkan baris berikut
 
     acl KERJA time MTWHF 08:00-16:00
 
-![Pucang14](images/14.png)
+![Pizza14](images/016.png)
 
-**STEP 3** - Simpan file acl.conf
+**STEP 3** - Simpan file **acl.conf**.
 
-**STEP 4** - Buka file **squid.conf**
+**STEP 4** - Buka file **squid.conf**.
 
     nano /etc/squid3/squid.conf
 
@@ -185,47 +182,50 @@ Kita akan mencoba membatasi akses proxy pada hari dan jam tertentu. Asumsikan pr
     http_port 8080
     http_access allow KERJA
     http_access deny all
-    visible_hostname pucang
+    visible_hostname pizza
 
-![Pucang15](images/15.png)
+![Pizza15](images/017.png)
 
-**STEP 6** - Simpan file tersebut. Kemudian restart squid
+**STEP 6** - Simpan file tersebut. Kemudian restart squid.
 
-**STEP 7** - Cobalah untuk mengakses web **its.ac.id** (usahakan menggunakan mode **incognito/private**). Seharusnya muncul halaman error jika mengakses diluar waktu yang telah ditentukan.
+**STEP 7** - Cobalah untuk mengakses web **http://its.ac.id** (usahakan menggunakan mode **incognito/private**). Akan muncul halaman error jika mengakses diluar waktu yang telah ditentukan.
 
-![Pucang16](images/16.png)
+![Pizza16](images/018.png)
 
 Keterangan:
-- **MTWHF** adalah kumpulan nama hari-hari dimana user diperbolehkan menggunakan proxy. (S: Sunday, M: Monday, T: Tuesday, W: Wednesday, H: Thursday, F: Friday, A: Saturday)
-- Penulisan jam: **h1:m1-h2:m2**. Dengan syarat **h1<h2** dan **m1<m2**
+- **MTWHF** adalah hari-hari dimana user diperbolehkan menggunakan proxy. (S: Sunday, M: Monday, T: Tuesday, W: Wednesday, H: Thursday, F: Friday, A: Saturday)
+- Penulisan jam menggunakan format: **h1:m1-h2:m2**. Dengan syarat **h1<h2** dan **m1<m2**
 
 ### 2.2.5 Pembatasan Akses ke Website Tertentu
 
-Kita akan mencoba membatasi akses ke beberapa website. Untuk contoh disini, kita akan memblokir website **E-Learning IF**
+Kita akan mencoba membatasi akses ke beberapa website. Untuk contoh disini, kita akan memblokir website **elearning.if.its.ac.id**
 
 **STEP 1** - Buat file bernama **bad-sites.acl** di folder **squid3** dengan mengetikkan:
 
     nano /etc/squid3/bad-sites.acl
     
-![Pucang17](images/17.png)
+![Pizza17](images/019.png)
 
 **STEP 2** - Tambahkan alamat url yang akan diblock seperti baris berikut:
 
     elearning.if.its.ac.id
 
-![Pucang18](images/18.png)
+![Pizza18](images/020.png)
 
 **STEP 3** - Ubah file konfigurasi squid menjadi seperti berikut ini.
+
+    http_port 8080
+    visible_hostname pizza
 
     acl BLACKLISTS dstdomain "/etc/squid3/bad-sites.acl"
     http_access deny BLACKLISTS
     http_access allow all
 
-**STEP 4** - Restart squid
+![Pizza](images/021.png)
 
-**STEP 5** - Cobalah untuk mengakses web **elearning.if.its.ac.id** (usahakan menggunakan mode **incognito/private**). Seharusnya muncul halaman error seperti di bawah ini.
+**STEP 4** - Restart squid. Kemudian cobalah untuk mengakses web **elearning.if.its.ac.id** (usahakan menggunakan mode **incognito/private**). Seharusnya muncul halaman error seperti di bawah ini.
 
-![Pucang19](images/19-new.png)
+![Pizza19](images/022.png)
 
 Keterangan:
 - **dstdomain** artinya destination domain/domain tujuan. Sintaksnya bisa diikuti dengan nama domain tujuan atau file yang menampung list-list alamat website.
@@ -238,7 +238,7 @@ Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user prox
 
     nano /etc/squid3/acl-bandwidth.conf
     
-![Pucang20](images/20.png)
+![Pizza20](images/023.png)
 
 **STEP 2** - Ketikkan baris berikut
 
@@ -247,32 +247,40 @@ Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user prox
     delay_access 1 allow all
     delay_parameters 1 16000/64000
 
-![Pucang21](images/21.png)
+![Pizza21](images/024.png)
 
 **STEP 3** - Ubah konfigurasi squid3 menjadi:
 
     include /etc/squid3/acl-bandwidth.conf
     http_port 8080
+    visible_hostname pizza
+
     http_access allow all
 
-![Pucang22](images/22.png)
+![Pizza22](images/025.png)
 
 **STEP 4** - Restart Squid
 
-**STEP 5** - Cobalah untuk mendownload file atau lakukan speed test. Berikut perbedaan sebelum dan sesudah adanya pembatasan bandwidth saat melakukan speed test
+**STEP 5** - Cobalah untuk melakukan speed test. Berikut perbedaan sebelum dan sesudah adanya pembatasan bandwidth saat melakukan speed test
 
-![Pucang23](images/23.png) ![Pucang24](images/24.png)
+![Pizza23](images/23.png) ![Pizza24](images/24.png)
 
 Keterangan:
-- **delay_pools** digunakan untuk menentukan berapa pool yang akan dibuat. (Sintaks: **delay_pools JUMLAH_YANG_DIINGINKAN**. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_pools/).
-- **delay_class** digunakan untuk menentukan kelas dari pool yang telah dibuat. (Sintaks: **delay_class POOL_KE_BERAPA KELAS**.) Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_class/.
-- **delay_access** mirip seperti http_access, tetapi digunakan untuk mengakses pool yang telah dibuat (Sintaks: **delay_access POOL_KE_BERAPA allow/deny TARGET**. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_access/).
-- **delay_parameters** digunakan untuk mengatur parameter dari pool yang telah dibuat. Sintaks berbeda-beda sesuai dengan kelas dari pool yang dibuat. Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_parameters/
-- **16000/64000** artinya bandwidth pada kondisi normal (trafik banyak) adalah 16000 Bps (128 kbps) dan pada saat kondisi kosong (tidak ada trafik lain) adalah 64000 Bps (512 kbps)
+- **delay_pools** digunakan untuk menentukan berapa bagian/pool yang akan dibuat. (Sintaks: **delay_pools JUMLAH_YANG_DIINGINKAN**. 
+Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_pools/).
+- **delay_class** digunakan untuk menentukan tipe/class pembagian bandwith dari setiap pool. (Sintaks: **delay_class POOL_KE_BERAPA KELAS**.) 
+Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_class/.
+- **delay_access** mirip seperti http_access, tetapi digunakan untuk mengakses pool yang telah dibuat (Sintaks: **delay_access POOL_KE_BERAPA allow/deny TARGET**. 
+Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_access/).
+- **delay_parameters** digunakan untuk mengatur parameter dari pool yang telah dibuat. Sintaks berbeda-beda sesuai dengan tipe/kelas dari pool yang dibuat. 
+Lebih lengkap lihat di http://www.squid-cache.org/Doc/config/delay_parameters/
+- **16000/64000** **(restore/max)**
+**restore** menentukan besarnya bandwith dalam satuan bytes/second
+**max** menentukan besarnya file atau bucket yang dapat dilewatkan tanpa melalui delay dalam satuan bytes.
 - Penjelasan dari fitur **delay_pools** lebih lengkap bisa dilihat di https://wiki.squid-cache.org/Features/DelayPools
 
 ## 2.3 Soal Latihan
-Mocatfrio adalah seorang mahasiswi Informatika ITS. Dia ingin membuat sebuah proxy sendiri. Proxy yang akan dibuat nantinya harus bisa diakses dengan nama **proxy.xxx.id** dan port yang digunakan **8080**. Dia ingin ada login terlebih dahulu saat menggunakan proxy. Untuk akun yang akan digunakan untuk dirinya sendiri, dia ingin menggunakan username **mocatfrio** dan password **n0-madeN**. Proxy ini nantinya hanya bisa digunakan saat mocatfrio sedang ada kelas. Jadwal kelas mocatfrio adalah Senin, Rabu, dan Kamis mulai jam 7 pagi sampai jam 4 sore. Kemudian, dia ingin membatasi agar hanya user dari **Informatics_wifi** saja yang bisa menggunakan proxy tersebut. Lalu, dia teringat kalau dulu dia pernah ditolak masuk Unair. Oleh karena itu dia memutuskan untuk memblokir website Unair (unair.ac.id) beserta seluruh subdomain yang ada. Supaya adil, dia ingin agar seluruh user mendapatkan bandwidth yang sama. Yaitu 512 kbps pada saat normal dan 1 Mbps pada saat kosong.
+Mocatfrio adalah seorang mahasiswi Informatika ITS. Dia ingin membuat sebuah proxy sendiri. Proxy yang akan dibuat nantinya harus bisa diakses dengan nama **proxy.xxx.id** dan port yang digunakan **8080**. Dia ingin ada login terlebih dahulu saat menggunakan proxy. Untuk akun yang akan digunakan untuk dirinya sendiri, dia ingin menggunakan username **mocatfrio** dan password **n0-madeN**. Proxy ini nantinya hanya bisa digunakan saat mocatfrio sedang ada kelas. Jadwal kelas mocatfrio adalah Senin, Rabu, dan Kamis mulai jam 7 pagi sampai jam 4 sore. Kemudian, dia ingin membatasi agar hanya user dari **Informatics_wifi** saja yang bisa menggunakan proxy tersebut. Lalu, dia teringat kalau dulu dia pernah ditolak masuk Unair. Oleh karena itu dia memutuskan untuk memblokir website Unair (unair.ac.id) beserta seluruh subdomain yang ada. Supaya adil, dia ingin agar seluruh user mendapatkan bandwidth yang sama, yaitu 512 kbps.
 
 Karena mocatfrio ternyata sangat sibuk, maka dia meminta bantuan kalian untuk membuatkan proxy seperti yang dia minta. Cobalah untuk memenuhi permintaan mocatfrio supaya mocatfrio merasa senang.
 
