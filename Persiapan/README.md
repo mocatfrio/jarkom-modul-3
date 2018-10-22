@@ -19,7 +19,7 @@ Berikut adalah topologi jaringan yang akan digunakan pada modul 3.
 4. Langkah-langkah selengkapnya silahkan mengikuti panduan membuat UML pada [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML).
 
 ## 2. Konfigurasi Interface
-Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/udinIMM/Modul-Pengenalan-UML), dengan tambahan:
+Konfigurasi interface sama seperti [Modul Pengenalan UML](https://github.com/rohanaq/Modul-Pengenalan-UML), dengan tambahan:
 
 * **PECEL (Sebagai Client)**
     ```bash
