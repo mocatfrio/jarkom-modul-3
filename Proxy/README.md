@@ -307,4 +307,4 @@ Keterangan:
 - **Informatics_wifi** : 10.151.252.0/22
 
 ## 2.4 Referensi
-* Manual Squid3 : http://www.visolve.com/uploads/resources/squid30.pdf
+* **Manual Squid3** : http://www.visolve.com/uploads/resources/squid30.pdf
