@@ -1,5 +1,22 @@
 # 1. Dynamic Host Configuration Protocol (DHCP)
 
+## Outline
+- [1. Dynamic Host Configuration Protocol (DHCP)](#1-dynamic-host-configuration-protocol-dhcp)
+    - [Outline](#outline)
+    - [1.1 Konsep](#11-konsep)
+        - [1.1.1 Pendahuluan](#111-pendahuluan)
+        - [1.1.2 Apa itu DHCP?](#112-apa-itu-dhcp)
+        - [1.1.3 Bootstrap Protocol dan Dynamic Host Configuration Protocol](#113-bootstrap-protocol-dan-dynamic-host-configuration-protocol)
+        - [1.1.4 DHCP Message Header](#114-dhcp-message-header)
+        - [1.1.5 Cara Kerja DHCP](#115-cara-kerja-dhcp)
+    - [1.2 Implementasi](#12-implementasi)
+        - [1.2.1 Instalasi ISC-DHCP-Server](#121-instalasi-isc-dhcp-server)
+        - [1.2.2 Konfigurasi DHCP Server](#122-konfigurasi-dhcp-server)
+        - [1.2.3 Konfigurasi DHCP Client](#123-konfigurasi-dhcp-client)
+        - [1.2.4 Fixed Address](#124-fixed-address)
+        - [1.2.5 Testing](#125-testing)
+    - [1.3 Soal Latihan](#13-soal-latihan)
+    - [1.4 Referensi](#14-referensi)
 ## 1.1 Konsep
 
 ### 1.1.1 Pendahuluan
@@ -222,7 +239,7 @@ Lakukan kembali langkah-langkah di atas pada client **KARI** dan **PECEL**.
 
 Setelah IP dipinjamkan ke sebuah client, maka IP tersebut tidak akan diberikan ke client lain. Buktinya, tidak ada client yang mendapatkan IP yang sama.
 
-## 1.2.4 Fixed Address
+### 1.2.4 Fixed Address
 
 > **Sebuah Kasus:**
 > >
@@ -288,7 +305,7 @@ Setelah mengonfigurasi DHCP server, kita juga harus mengonfigurasi DHCP client. 
 
     Yeay! IP **PECEL** telah berubah menjadi 192.168.0.15 sesuai dengan Fixed Address yang diberikan oleh DHCP Server.
 
-## 1.2.5 Final Testing
+### 1.2.5 Testing
 
 Setelah melakukan berbagai konfigurasi di atas, kalian bisa memastikan apakah DHCP Server kalian berhasil dengan cara:
 
@@ -315,3 +332,8 @@ Jika **SOTO** dan **KARI** berganti alamat IP sesuai dengan range yang telah dik
     * Setiap 1 menit IP yang digunakan client berganti
     * DNS mengarah ke DNS server kalian sendiri yaitu KATSU, tetapi tetap bisa digunakan untuk mengakses internet
 2. Bagaimana cara konfigurasi DHCP dengan 2 interface?
+
+## 1.4 Referensi
+* **Manual ISC DHCP** : https://www.isc.org/wp-content/uploads/2018/10/dhcpd44.html
+* https://www.nada.kth.se/kurser/kth/2D1392/05/lectures/lecture_9.pdf
+* http://www.tcpipguide.com/free/t_DHCPGeneralOperationandClientFiniteStateMachine.htm

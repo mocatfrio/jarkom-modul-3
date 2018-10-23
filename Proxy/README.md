@@ -1,5 +1,23 @@
 # 2. Proxy Server
 
+## Outline
+- [2. Proxy Server](#2-proxy-server)
+    - [Outline](#outline)
+    - [2.1 Pengertian, Fungsi, dan Manfaat](#21-pengertian-fungsi-dan-manfaat)
+        - [2.1.1 Pengertian](#211-pengertian)
+        - [2.1.2 Fungsi](#212-fungsi)
+        - [2.1.3 Manfaat](#213-manfaat)
+        - [2.1.4 Software Proxy Server](#214-software-proxy-server)
+    - [2.2 Implementasi](#22-implementasi)
+        - [2.2.1 Instalasi Squid](#221-instalasi-squid)
+        - [2.2.2 Konfigurasi Dasar Squid](#222-konfigurasi-dasar-squid)
+        - [2.2.3 Membuat User Login](#223-membuat-user-login)
+        - [2.2.4 Pembatasan Waktu Akses](#224-pembatasan-waktu-akses)
+        - [2.2.5 Pembatasan Akses ke Website Tertentu](#225-pembatasan-akses-ke-website-tertentu)
+        - [2.2.6 Pembatasan Bandwidth](#226-pembatasan-bandwidth)
+    - [2.3 Soal Latihan](#23-soal-latihan)
+    - [2.4 Referensi](#24-referensi)
+  
 ## 2.1 Pengertian, Fungsi, dan Manfaat
 ### 2.1.1 Pengertian
 Proxy server adalah sebuah server atau program komputer yang berperan sebagai penghubung antara suatu komputer dengan jaringan internet. Atau dalam kata lain, proxy server adalah suatu jaringan yang menjadi perantara antara jaringan lokal dan jaringan internet.
@@ -287,3 +305,6 @@ Karena mocatfrio ternyata sangat sibuk, maka dia meminta bantuan kalian untuk me
 Keterangan:
 - **xxx** adalah kelompok kalian masing-masing. Misal: **c01**
 - **Informatics_wifi** : 10.151.252.0/22
+
+## 2.4 Referensi
+* Manual Squid3 : http://www.visolve.com/uploads/resources/squid30.pdf
