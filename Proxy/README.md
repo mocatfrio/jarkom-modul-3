@@ -23,6 +23,8 @@
 ### 2.1.1 Pengertian
 Proxy server adalah sebuah server atau program komputer yang berperan sebagai penghubung antara suatu komputer dengan jaringan internet. Atau dalam kata lain, proxy server adalah suatu jaringan yang menjadi perantara antara jaringan lokal dan jaringan internet.
 
+![Sistem Proxy Server](images/Sistem-Proxy-Server.jpg)
+
 Proxy server dapat berupa suatu sistem komputer ataupun sebuah aplikasi yang bertugas menjadi gateway atau pintu masuk yang menghubungan komputer kita dengan jaringan luar.
 
 ### 2.1.2 Fungsi
