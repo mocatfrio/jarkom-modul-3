@@ -8,6 +8,7 @@
         - [2.1.2 Fungsi](#212-fungsi)
         - [2.1.3 Manfaat](#213-manfaat)
         - [2.1.4 Software Proxy Server](#214-software-proxy-server)
+        - [2.1.5 Cara Kerja Squid](#215-cara-kerja-squid)
     - [2.2 Implementasi](#22-implementasi)
         - [2.2.1 Instalasi Squid](#221-instalasi-squid)
         - [2.2.2 Konfigurasi Dasar Squid](#222-konfigurasi-dasar-squid)
@@ -27,6 +28,7 @@ Proxy server dapat berupa suatu sistem komputer ataupun sebuah aplikasi yang ber
 ### 2.1.2 Fungsi
 1. ***Connection sharing*** :
 Proxy bertindak sebagai gateway yang menjadi pembatas antara jaringan lokal dengan jaringan luar. Gateway bertindak juga sebagai sebuah titik dimana sejumlah koneksi dari pengguna lokal dan koneksi jaringan luar juga terhubung kepadanya. Oleh sebab itu, koneksi dari jaringan lokal ke internet akan menggunakan sambungan yang dimiliki oleh gateway secara bersama-sama (connecion sharing).
+
 2. ***Filtering*** :
 Proxy bisa difungsikan untuk bekerja pada layar aplikasi dengan demikian maka dia bisa berfungsi sebagai firewalll paket filtering yang dapat digunakan untuk melindungi jaringan lokal terhadap gangguan maupun ancaman serangan dari jaringan luar. Fungsi filtering ini juga dapat diatur atau dikonfigurasi untuk menolak akses terhadap situs web tertentu dan pada waktu- waktu tertentu juga.
 3. ***Caching*** :
@@ -44,15 +46,15 @@ Proxy server memiliki manfaat-manfaat berikut ini:
 Beberapa contoh software proxy server yang sering digunakan adalah sebagai berikut:
 
 1. CCProxy
-
 2. WinGate
-
 3. Squid
-
 4. Nginx
 
+### 2.1.5 Cara Kerja Squid
+![Skema Squid](images/schemofsquid.GIF)
+
 ## 2.2 Implementasi
-Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **SQUID**. UML yang digunakan sebagai proxy server adalah **PIZZA**.
+Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **Squid**. UML yang digunakan sebagai proxy server adalah **PIZZA**.
 
 ### 2.2.1 Instalasi Squid
 **STEP 1** - Install squid3 pada UML **PIZZA**, ketikkan:
@@ -276,7 +278,22 @@ Kita akan mencoba untuk membatasi bandwidth yang akan diberikan kepada user prox
     http_access allow all
 
 ![Pizza22](images/025.png)
-
+- [2. Proxy Server](#2-proxy-server)
+    - [Outline](#outline)
+    - [2.1 Pengertian, Fungsi, dan Manfaat](#21-pengertian-fungsi-dan-manfaat)
+        - [2.1.1 Pengertian](#211-pengertian)
+        - [2.1.2 Fungsi](#212-fungsi)
+        - [2.1.3 Manfaat](#213-manfaat)
+        - [2.1.4 Software Proxy Server](#214-software-proxy-server)
+    - [2.2 Implementasi](#22-implementasi)
+        - [2.2.1 Instalasi Squid](#221-instalasi-squid)
+        - [2.2.2 Konfigurasi Dasar Squid](#222-konfigurasi-dasar-squid)
+        - [2.2.3 Membuat User Login](#223-membuat-user-login)
+        - [2.2.4 Pembatasan Waktu Akses](#224-pembatasan-waktu-akses)
+        - [2.2.5 Pembatasan Akses ke Website Tertentu](#225-pembatasan-akses-ke-website-tertentu)
+        - [2.2.6 Pembatasan Bandwidth](#226-pembatasan-bandwidth)
+    - [2.3 Soal Latihan](#23-soal-latihan)
+    - [2.4 Referensi](#24-referensi)
 **STEP 4** - Restart Squid
 
 **STEP 5** - Cobalah untuk melakukan speed test. Berikut perbedaan sebelum dan sesudah adanya pembatasan bandwidth saat melakukan speed test
