@@ -47,7 +47,6 @@ Proxy server memiliki manfaat-manfaat berikut ini:
 
 ### 2.1.4 Software Proxy Server
 Beberapa contoh software proxy server yang sering digunakan adalah sebagai berikut:
-
 1. CCProxy
 2. WinGate
 3. Squid
@@ -57,84 +56,93 @@ Beberapa contoh software proxy server yang sering digunakan adalah sebagai berik
 ![Skema Squid](images/schemofsquid.GIF)
 
 ## 2.2 Implementasi
-Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **Squid**. UML yang digunakan sebagai proxy server adalah **PIZZA**.
+Untuk praktikum jarkom kali ini, software proxy server yang digunakan adalah **Squid** dan UML yang digunakan sebagai proxy server adalah **PIZZA**.
 
 ### 2.2.1 Instalasi Squid
 **STEP 1** - Install squid3 pada UML **PIZZA**, ketikkan:
-
-    apt-get install squid3
+```bash
+apt-get install squid3
+```
 
 ![install squid3](images/001.png "install squid3")
 
-
-**STEP 2** - Cek status squid3 dengan mengetikkan 
-
-    service squid3 status
+**STEP 2** - Cek status squid3 untuk memastikan bahwa Squid3 telah berjalan dengan baik dengan mengetikkan 
+```bash
+service squid3 status
+```
 
 ![cek status squid3](images/002.png "cek status squid3")
 
 Jika muncul status **ok** maka instalasi telah berhasil.
 
 ### 2.2.2 Konfigurasi Dasar Squid
-**STEP 1** - Backup terlebih dahulu file konfigurasi default yang disediakan squid. Ketikkan perintah berikut untuk melakukan backup: 
+**STEP 1** - Backup terlebih dahulu file konfigurasi default yang disediakan squid. Ketikkan perintah berikut untuk melakukan backup:
 
-    mv /etc/squid3/squid.conf /etc/squid3/squid.conf.bak
+```bash
+mv /etc/squid3/squid.conf /etc/squid3/squid.conf.bak
+```
 
 ![Back up konfigurasi default squid](images/003.png "Back up konfigurasi default squid")
 
 **STEP 2** - Buat konfigurasi baru dengan mengetikkan:
+```bash
+nano /etc/squid3/squid.conf
+```
 
-    nano /etc/squid3/squid.conf
-    
 ![Membuat konfigurasi baru](images/004.png "Membuat konfigurasi baru")
 
-**STEP 3** - Kemudian, pada file config yang baru, ketikkan:
-
-    http_port 8080
-    visible_hostname pizza
+**STEP 3** - Kemudian, pada file config yang baru, ketikkan script:
+```bash
+http_port 8080
+visible_hostname pizza
+```
 
 ![Pizza](images/005.png)
 
-Konfigurasi di atas berarti:
-- Menggunakan port 8080
-- Nama yang akan terlihat pada status: pizza
+**Keterangan:**
+- `http_port 8080` : Port yang digunakan untuk mengakses proxy, dalam kasus ini adalah **8080**. (Sintaks: `http_port 'PORT_YANG_DIINGINKAN'`)
+- `visible_hostname pizza` : Nama proxy yang akan terlihat oleh user (Sintaks: `visible_hostname 'NAMA_YANG_DIINGINKAN'`)
 
 **STEP 4** - Restart squid dengan cara mengetikkan perintah:
-
-    service squid3 restart
+```bash
+service squid3 restart
+```
 
 ![Restart squid](images/006.png "Restart squid")
 
-**STEP 5** - Ubah pengaturan proxy browser. Gunakan **IP PIZZA** sebagai host, dan isikan port **8080**. Kemudian cobalah untuk mengakses web **http://its.ac.id** (usahakan menggunakan mode **incognito/private**), akan muncul halaman seperti berikut:
+**STEP 5** - Ubah pengaturan proxy browser. 
+Gunakan **IP PIZZA** sebagai host dan isikan port **8080**. Kemudian cobalah untuk mengakses web **http://its.ac.id** (usahakan menggunakan mode **incognito/private**). Maka akan muncul halaman seperti berikut:
 
 ![Access Denied](images/007.png "Access Denied")
 
-**STEP 7** - Supaya bisa mengakses web **http://its.ac.id**, buka kembali file konfigurasi squid yang sudah dibuat tadi dan tambahkan baris berikut.
-
-    http_access allow all
+**STEP 7** - Supaya bisa mengakses web **http://its.ac.id**, maka kalian harus menambah sebaris script pada konfigurasi squid. Buka kembali file konfigurasi tadi dan tambahkan baris berikut:
+```bash
+http_access allow all
+```
 
 ![Allow all](images/008.png "Allow all")
 
-**STEP 9** - **Simpan** file konfigurasi tersebut, lalu **restart** squid. Refresh halaman web **http://its.ac.id**. Seharusnya halaman yang ditampilkan kembali normal.
+**Keterangan:**
+- `http_access allow all` : Memperbolehkan semuanya untuk mengakses proxy via http. Pengaturan ini perlu ditambahkan karena pengaturan default squid adalah **deny** (Sintaks: `http_access allow 'TARGET'`)
+- Untuk menolak koneksi, maka **allow** diganti dengan **deny**.
 
-Keterangan:
-- **http_port 8080** berarti menggunakan port 8080 untuk mengakses proxy (Sintaks: **http_port PORT_YANG_DIINGINKAN**)
-- **visible_hostname pizza** adalah sintaks untuk memberikan nama proxy yang dapat dilihat user (Sintaks: **visible_hostname NAMA_YANG_DIINGINKAN**)
-- **http_access allow all** artinya memperbolehkan semuanya untuk mengakses proxy via http, perlu ditambahkan karena pengaturan default squid adalah **deny** (Sintaks: **http_access allow TARGET**)
-- Untuk menolak koneksi, maka **allow** diganti dengan **deny**
+**STEP 9** - **Simpan** file konfigurasi tersebut, lalu **restart** squid. Refresh halaman web **http://its.ac.id**. 
+
+Seharusnya halaman yang ditampilkan kembali normal.
 
 ### 2.2.3 Membuat User Login
 
-**STEP 1** - Install apache2-utils pada UML **PIZZA**. Ketikkan:
-
-    apt-get install apache2-utils
+**STEP 1** - Install `apache2-utils` pada UML **PIZZA**. Sebelumnya kalian sudah harus melakukan `apt-get update`. Ketikkan:
+```bash
+apt-get install apache2-utils
+```
 
 ![Install apache2-utils](images/010.png "Install apache2-utils")
 
 **STEP 2** - Buat user dan password baru. Ketikkan:
-
-    htpasswd -c /etc/squid3/passwd jarkom204
-    
+```bash
+htpasswd -c /etc/squid3/passwd jarkom204
+```
 ![Membuat user](images/011.png "Mebuat user")
 
 Ketikkan password yang diinginkan. Jika sudah maka akan muncul notifikasi:
@@ -142,19 +150,30 @@ Ketikkan password yang diinginkan. Jika sudah maka akan muncul notifikasi:
 ![Pizza10](images/012.png)
 
 **STEP 3** - Edit konfigurasi squid menjadi:
+```bash
+http_port 8080
+visible_hostname pizza
 
-    http_port 8080
-    visible_hostname pizza
-    
-    auth_param basic program /usr/lib/squid3/ncsa_auth /etc/squid3/passwd
-    auth_param basic children 5
-    auth_param basic realm Proxy
-    auth_param basic credentialsttl 2 hours
-    auth_param basic casesensitive on
-    acl USERS proxy_auth REQUIRED
-    http_access allow USERS
+auth_param basic program /usr/lib/squid3/ncsa_auth /etc/squid3/passwd
+auth_param basic children 5
+auth_param basic realm Proxy
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive on
+acl USERS proxy_auth REQUIRED
+http_access allow USERS
+```
 
 ![Pizza11](images/013.png)
+
+**Keterangan:**
+- `auth_param` digunakan untuk mengatur autentikasi (Sintaks: `auth_param 'SCHEME' 'PARAMETER' 'SETTING'`. Lebih lengkapnya di [http://www.squid-cache.org/Doc/config/auth_param/](http://www.squid-cache.org/Doc/config/auth_param/)).
+- `program` : Perintah untuk mendefiniskan autentikator eksternal.
+- `children` : Mendefinisikan jumlah maksimal autentikator muncul.
+- `realm` : Teks yang akan muncul pada pop-up autentikasi.
+- `credentialsttl` : Mengatur masa aktif suatu autentikasi berlaku.
+- `casesensitive` : Mengatur apakah **username** bersifat case sensitive atau tidak.
+- `acl` digunakan untuk mendefinisikan pengaturan akses tertentu. (Sintaks umum: **acl ACL_NAME ACL_TYPE ARGUMENT** . Lebih lengkapnya di http://www.squid-cache.org/Doc/config/acl/)
+- Untuk melihat daftar apa saja yang bisa diatur dengan acl bisa diakses di: https://wiki.squid-cache.org/SquidFaq/SquidAcl)
 
 **STEP 4** - Restart squid
 
@@ -165,16 +184,6 @@ Ketikkan password yang diinginkan. Jika sudah maka akan muncul notifikasi:
 **STEP 6** - Isikan username dan password.
 
 **STEP 7** - E-learning berhasil dibuka.
-
-Keterangan:
-- **auth_param** digunakan untuk mengatur autentikasi (Sintaks: **auth_param SCHEME PARAMETER SETTING**. Lebih lengkapnya di http://www.squid-cache.org/Doc/config/auth_param/).
-- `program` : perintah untuk mendefiniskan autentikator eksternal.
-- `children` : mendefinisikan jumlah maksimal autentikator muncul.
-- `realm` : teks yang akan muncul pada pop-up autentikasi.
-- `credentialsttl` : mengatur masa aktif suatu autentikasi berlaku.
-- `casesensitive` : untuk mengatur apakah **username** bersifat case sensitive atau tidak.
-- **acl** digunakan untuk mendefinisikan pengaturan akses tertentu. (Sintaks umum: **acl ACL_NAME ACL_TYPE ARGUMENT** . Lebih lengkapnya di http://www.squid-cache.org/Doc/config/acl/)
-- Untuk melihat daftar apa saja yang bisa diatur dengan acl bisa diakses di: https://wiki.squid-cache.org/SquidFaq/SquidAcl)
 
 ### 2.2.4 Pembatasan Waktu Akses
 
